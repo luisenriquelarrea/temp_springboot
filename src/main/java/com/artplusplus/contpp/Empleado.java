@@ -34,4 +34,8 @@ public class Empleado {
     public void setName(String name) {
         this.nombre_completo = name;
     }
+
+    public String getRFC(){
+        return rfc;
+    }
 }

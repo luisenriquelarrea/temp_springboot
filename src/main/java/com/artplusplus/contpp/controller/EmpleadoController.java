@@ -22,14 +22,16 @@ public class EmpleadoController {
     private EmpleadoRepository empleadoRepository;
 
     @PostMapping(path="/add") // Map ONLY POST Requests
-    public @ResponseBody String add(@RequestParam String name) {
+    public ResponseEntity<String> add(@RequestParam String nombre_completo) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-
         Empleado empleado = new Empleado();
-        empleado.setName(name);
+        empleado.setPlazaId(2);
+        empleado.setNombreCompleto("Marilu Barcenas");
+        empleado.setRFC("BAMM890728ERM");
+        empleado.setCURP("BAMM890728MJMOSA");
         empleadoRepository.save(empleado);
-        return "Saved";
+        return ResponseEntity.ok("Saved");
     }
 
     @GetMapping(path="/all")

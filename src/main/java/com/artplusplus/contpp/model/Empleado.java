@@ -27,15 +27,35 @@ public class Empleado {
         this.id = id;
     }
 
-    public String getName() {
+    public Integer getPlazaId() {
+        return plaza_id;
+    }
+
+    public void setPlazaId(Integer plaza_id) {
+        this.plaza_id = plaza_id;
+    }
+
+    public String getNombreCompleto() {
         return nombre_completo;
     }
 
-    public void setName(String name) {
-        this.nombre_completo = name;
+    public void setNombreCompleto(String nombre_completo) {
+        this.nombre_completo = nombre_completo;
     }
 
     public String getRFC(){
         return rfc;
+    }
+
+    public void setRFC(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public String getCURP(){
+        return curp;
+    }
+
+    public void setCURP(String curp) {
+        this.curp = curp;
     }
 }

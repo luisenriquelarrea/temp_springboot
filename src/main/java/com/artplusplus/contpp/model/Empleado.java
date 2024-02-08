@@ -1,4 +1,4 @@
-package com.artplusplus.contpp;
+package com.artplusplus.contpp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.model.Empleado;
@@ -38,7 +37,7 @@ public class EmpleadoController {
 
     @DeleteMapping(path="/{id}")
     public ResponseEntity<String> delete(@PathVariable String id) {
-        int empleadoId = Integer.parseInt(id);
+        Long empleadoId = Long.parseLong(id);
         if(empleadoRepository.existsById(empleadoId)){
             empleadoRepository.deleteById(empleadoId);
             return ResponseEntity.ok("Deleted");

@@ -11,9 +11,9 @@ import jakarta.persistence.Id;
 public class Empleado {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    private Integer plazaId;
+    private Long plazaId;
 
     private String nombreCompleto;
 
@@ -21,19 +21,19 @@ public class Empleado {
 
     private String curp;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getPlazaId() {
+    public Long getPlazaId() {
         return plazaId;
     }
 
-    public void setPlazaId(Integer plazaId) {
+    public void setPlazaId(Long plazaId) {
         this.plazaId = plazaId;
     }
 

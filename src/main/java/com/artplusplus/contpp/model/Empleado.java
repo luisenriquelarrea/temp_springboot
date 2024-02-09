@@ -1,19 +1,21 @@
 package com.artplusplus.contpp.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@Table(name = "empleado")
 public class Empleado {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer plaza_id;
+    private Integer plazaId;
 
-    private String nombre_completo;
+    private String nombreCompleto;
 
     private String rfc;
 
@@ -28,19 +30,19 @@ public class Empleado {
     }
 
     public Integer getPlazaId() {
-        return plaza_id;
+        return plazaId;
     }
 
-    public void setPlazaId(Integer plaza_id) {
-        this.plaza_id = plaza_id;
+    public void setPlazaId(Integer plazaId) {
+        this.plazaId = plazaId;
     }
 
     public String getNombreCompleto() {
-        return nombre_completo;
+        return nombreCompleto;
     }
 
-    public void setNombreCompleto(String nombre_completo) {
-        this.nombre_completo = nombre_completo;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getRFC(){

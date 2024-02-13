@@ -28,13 +28,13 @@ public class EmpleadoServiceImpl implements EmpleadoService {
             && !"".equalsIgnoreCase(empleado.getNombreCompleto())){
             empleadoDB.setNombreCompleto(empleado.getNombreCompleto());
         }
-        if(Objects.nonNull(empleado.getRFC()) 
-            && !"".equalsIgnoreCase(empleado.getRFC())){
-            empleadoDB.setRFC(empleado.getRFC());
+        if(Objects.nonNull(empleado.getRfc()) 
+            && !"".equalsIgnoreCase(empleado.getRfc())){
+            empleadoDB.setRfc(empleado.getRfc());
         }
-        if(Objects.nonNull(empleado.getCURP()) 
-            && !"".equalsIgnoreCase(empleado.getCURP())){
-            empleadoDB.setCURP(empleado.getCURP());
+        if(Objects.nonNull(empleado.getCurp()) 
+            && !"".equalsIgnoreCase(empleado.getCurp())){
+            empleadoDB.setCurp(empleado.getCurp());
         }
         
         return empleadoRepository.save(empleadoDB);

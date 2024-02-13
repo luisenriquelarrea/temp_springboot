@@ -16,7 +16,6 @@ import com.artplusplus.contpp.model.Empleado;
 import com.artplusplus.contpp.service.EmpleadoService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/empleado") // This means URL's start with /empleado (after Application path)
@@ -40,7 +39,7 @@ public class EmpleadoController {
     @PutMapping(path="/{id}")
     public ResponseEntity<Empleado> update(@RequestBody Empleado empleado,
                      @PathVariable Long id){
-        Empleado updEmpleado = empleadoService.updateEmpleado(empleado, id);
+        Empleado updEmpleado = empleadoService.saveEmpleado(empleado);
         return ResponseEntity.ok(updEmpleado);
     }
 

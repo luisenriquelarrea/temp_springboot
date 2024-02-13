@@ -47,4 +47,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public boolean getById(Long empleadoId){
         return empleadoRepository.existsById(empleadoId);
     }
+
+    public Empleado empleadoById(Long empleadoId){
+        return empleadoRepository.findById(empleadoId).get();
+    }
 }

@@ -19,4 +19,6 @@ public interface EmpleadoService {
 
     //Get by id operation
     boolean getById(Long empleadoId);
+
+    Empleado empleadoById(Long empleadoId);
 }

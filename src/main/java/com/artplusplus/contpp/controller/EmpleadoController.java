@@ -16,6 +16,7 @@ import com.artplusplus.contpp.model.Empleado;
 import com.artplusplus.contpp.service.EmpleadoService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/empleado") // This means URL's start with /empleado (after Application path)
@@ -51,5 +52,14 @@ public class EmpleadoController {
             return ResponseEntity.ok("Deleted");
         }
         return ResponseEntity.ok("ID not found");
+    }
+
+    @GetMapping(path="/{id}")
+    public ResponseEntity<Empleado> getById(@PathVariable Long id){
+        if(empleadoService.getById(id)){
+            Empleado empleado = empleadoService.empleadoById(id);
+            return ResponseEntity.ok(empleado);
+        }
+        return ResponseEntity.noContent().build();
     }
 }

@@ -18,7 +18,7 @@ import com.artplusplus.contpp.service.EmpleadoService;
 import java.util.List;
 
 @Controller // This means that this class is a Controller
-@RequestMapping(path="/empleado") // This means URL's start with /empleado (after Application path)
+@RequestMapping(path="/api/empleado") // This means URL's start with /empleado (after Application path)
 public class EmpleadoController {
     @Autowired private EmpleadoService empleadoService;
 
@@ -59,6 +59,6 @@ public class EmpleadoController {
             Empleado empleado = empleadoService.empleadoById(id);
             return ResponseEntity.ok(empleado);
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.notFound().build();
     }
 }

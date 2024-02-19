@@ -12,13 +12,14 @@ public interface EmpleadoService {
     List<Empleado> listEmpleado();
 
     //Update operation
-    Empleado updateEmpleado(Empleado empleado, Long empleadoId);
+    Empleado updateEmpleado(Empleado empleado, Long id);
 
     //Delete operation
-    void deleteEmpleado(Long empleadoId);
+    void deleteEmpleado(Long id);
 
     //Get by id operation
-    boolean getById(Long empleadoId);
+    boolean getById(Long id);
 
-    Empleado empleadoById(Long empleadoId);
+    //Get Empleado entity by id
+    Empleado empleadoById(Long id);
 }

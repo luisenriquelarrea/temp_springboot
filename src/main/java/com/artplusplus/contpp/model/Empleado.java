@@ -5,7 +5,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,6 @@ public class Empleado {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    private Long plazaId;
-
     private String nombreCompleto;
 
     private String rfc;
@@ -31,4 +29,7 @@ public class Empleado {
     private String curp;
 
     private String nss;
+    
+    @ManyToOne
+    private Plaza plaza;
 }

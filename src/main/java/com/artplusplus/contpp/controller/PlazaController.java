@@ -12,52 +12,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.artplusplus.contpp.model.Empleado;
-import com.artplusplus.contpp.service.EmpleadoService;
+import com.artplusplus.contpp.model.Plaza;
+import com.artplusplus.contpp.service.PlazaService;
 
 import java.util.List;
 
 @Controller // This means that this class is a Controller
-@RequestMapping(path="/api/empleado") // This means URL's start with /empleado (after Application path)
-public class EmpleadoController {
-    @Autowired private EmpleadoService empleadoService;
+@RequestMapping(path="/api/plaza") // This means URL's start with /plaza (after Application path)
+public class PlazaController {
+    @Autowired private PlazaService plazaService;
 
     @PostMapping(path="/add") // Map ONLY POST Requests
-    public ResponseEntity<Empleado> add(@RequestBody Empleado empleado) {
+    public ResponseEntity<Plaza> add(@RequestBody Plaza plaza) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        Empleado newEmpleado = empleadoService.saveEmpleado(empleado);
-        return ResponseEntity.ok(newEmpleado);
+        Plaza newPlaza = plazaService.savePlaza(plaza);
+        return ResponseEntity.ok(newPlaza);
     }
 
     @GetMapping(path="/")
-    public @ResponseBody List<Empleado> all() {
+    public @ResponseBody List<Plaza> all() {
         // This returns a JSON or XML with the users
-        return empleadoService.listEmpleado();
+        return plazaService.listPlaza();
     }
 
     @PutMapping(path="/{id}")
-    public ResponseEntity<Empleado> update(@RequestBody Empleado empleado,
+    public ResponseEntity<Plaza> update(@RequestBody Plaza plaza,
                      @PathVariable Long id){
-        Empleado updEmpleado = empleadoService.saveEmpleado(empleado);
-        return ResponseEntity.ok(updEmpleado);
+        Plaza updPlaza = plazaService.savePlaza(plaza);
+        return ResponseEntity.ok(updPlaza);
     }
 
     @DeleteMapping(path="/{id}")
     public ResponseEntity<String> delete(@PathVariable String id) {
-        Long empleadoId = Long.parseLong(id);
-        if(empleadoService.getById(empleadoId)){
-            empleadoService.deleteEmpleado(empleadoId);
+        Long plazaId = Long.parseLong(id);
+        if(plazaService.getById(plazaId)){
+            plazaService.deletePlaza(plazaId);
             return ResponseEntity.ok("Deleted");
         }
         return ResponseEntity.ok("ID not found");
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Empleado> getById(@PathVariable Long id){
-        if(empleadoService.getById(id)){
-            Empleado empleado = empleadoService.empleadoById(id);
-            return ResponseEntity.ok(empleado);
+    public ResponseEntity<Plaza> getById(@PathVariable Long id){
+        if(plazaService.getById(id)){
+            Plaza plaza = plazaService.plazaById(id);
+            return ResponseEntity.ok(plaza);
         }
         return ResponseEntity.notFound().build();
     }

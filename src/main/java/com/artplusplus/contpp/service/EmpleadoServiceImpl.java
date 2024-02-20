@@ -21,8 +21,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         return (List<Empleado>) empleadoRepository.findAll();
     }
 
-    public Empleado updateEmpleado(Empleado empleado, Long empleadoId){
-        Empleado empleadoDB = empleadoRepository.findById(empleadoId).get();
+    /*public Empleado updateEmpleado(Empleado empleado, Long id){
+        Empleado empleadoDB = empleadoRepository.findById(id).get();
         
         if(Objects.nonNull(empleado.getNombreCompleto()) 
             && !"".equalsIgnoreCase(empleado.getNombreCompleto())){
@@ -38,17 +38,17 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         }
         
         return empleadoRepository.save(empleadoDB);
+    }*/
+
+    public void deleteEmpleado(Long id){
+        empleadoRepository.deleteById(id);
     }
 
-    public void deleteEmpleado(Long empleadoId){
-        empleadoRepository.deleteById(empleadoId);
+    public boolean getById(Long id){
+        return empleadoRepository.existsById(id);
     }
 
-    public boolean getById(Long empleadoId){
-        return empleadoRepository.existsById(empleadoId);
-    }
-
-    public Empleado empleadoById(Long empleadoId){
-        return empleadoRepository.findById(empleadoId).get();
+    public Empleado empleadoById(Long id){
+        return empleadoRepository.findById(id).get();
     }
 }

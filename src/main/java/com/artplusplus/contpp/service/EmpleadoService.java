@@ -12,7 +12,7 @@ public interface EmpleadoService {
     List<Empleado> listEmpleado();
 
     //Update operation
-    Empleado updateEmpleado(Empleado empleado, Long id);
+    //Empleado updateEmpleado(Empleado empleado, Long id);
 
     //Delete operation
     void deleteEmpleado(Long id);

@@ -1,4 +1,4 @@
-package com.artplusplus.contpp.model;
+package com.artplusplus.contpp.dto;
 
 import jakarta.persistence.Table;
 

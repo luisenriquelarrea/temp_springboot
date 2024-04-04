@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.artplusplus.contpp.model.UsuarioDto;
+import com.artplusplus.contpp.dto.UsuarioDto;
 import com.artplusplus.contpp.service.UsuarioService;
 
 @Controller // This means that this class is a Controller

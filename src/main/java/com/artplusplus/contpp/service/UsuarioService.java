@@ -1,6 +1,6 @@
 package com.artplusplus.contpp.service;
 
-import com.artplusplus.contpp.model.UsuarioDto;
+import com.artplusplus.contpp.dto.UsuarioDto;
 
 public interface UsuarioService {
 

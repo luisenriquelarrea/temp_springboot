@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.artplusplus.contpp.model.Usuario;
-import com.artplusplus.contpp.model.UsuarioDto;
+import com.artplusplus.contpp.dto.UsuarioDto;
 import com.artplusplus.contpp.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 

@@ -9,6 +9,7 @@ import com.artplusplus.contpp.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Objects;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -18,22 +19,26 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
     public boolean getById(Long id){
         return usuarioRepository.existsById(id);
     }
 
-    public Optional<Usuario> getUserByUsername(String username) {
-        return usuarioRepository.findByUsername(username);
+    @Override
+    public Optional<Usuario> getUserByName(String name) {
+        return usuarioRepository.findByName(name);
     }
 
+    @Override
     public UsuarioDto usuarioById(Long id){
         Usuario usuario = usuarioRepository.findById(id).get(); 
         UsuarioDto usuarioDto = modelMapper.map(usuario, UsuarioDto.class); 
         return usuarioDto;
     }
 
-    public Optional<Usuario> validUsernameAndPassword(String username, String password) {
-        return getUserByUsername(username)
-                .filter(user -> passwordEncoder.matches(password, user.getPassword()));
+    @Override
+    public Optional<Usuario> validUsernameAndPassword(String name, String password) {
+        return getUserByName(name)
+                .filter(usuario -> Objects.equals(password, usuario.getPassword()));
     }
 }

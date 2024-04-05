@@ -12,10 +12,12 @@ import java.util.List;
 public class EmpleadoServiceImpl implements EmpleadoService {
     @Autowired private EmpleadoRepository empleadoRepository;
 
+    @Override
     public Empleado saveEmpleado(Empleado empleado){
         return empleadoRepository.save(empleado);
     }
 
+    @Override
     public List<Empleado> listEmpleado(){
         return (List<Empleado>) empleadoRepository.findAll();
     }
@@ -39,14 +41,17 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         return empleadoRepository.save(empleadoDB);
     }*/
 
+    @Override
     public void deleteEmpleado(Long id){
         empleadoRepository.deleteById(id);
     }
 
+    @Override
     public boolean getById(Long id){
         return empleadoRepository.existsById(id);
     }
 
+    @Override
     public Empleado empleadoById(Long id){
         return empleadoRepository.findById(id).get();
     }

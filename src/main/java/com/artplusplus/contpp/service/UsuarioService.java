@@ -9,10 +9,10 @@ public interface UsuarioService {
     //Get by id operation
     boolean getById(Long id);
 
-    Optional<Usuario> getUserByUsername(String username);
+    Optional<Usuario> getUserByName(String name);
 
     //Get Usuario entity by id
     UsuarioDto usuarioById(Long id);
 
-    Optional<UsuarioDto> validUsernameAndPassword(String username, String password);
+    Optional<Usuario> validUsernameAndPassword(String name, String password);
 }

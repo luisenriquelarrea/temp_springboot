@@ -22,7 +22,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.existsById(id);
     }
 
-    public Optional<UsuarioDto> getUserByUsername(String username) {
+    public Optional<Usuario> getUserByUsername(String username) {
         return usuarioRepository.findByUsername(username);
     }
 
@@ -32,7 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioDto;
     }
 
-    public Optional<UsuarioDto> validUsernameAndPassword(String username, String password) {
+    public Optional<Usuario> validUsernameAndPassword(String username, String password) {
         return getUserByUsername(username)
                 .filter(user -> passwordEncoder.matches(password, user.getPassword()));
     }

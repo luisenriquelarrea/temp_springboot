@@ -2,7 +2,8 @@ package com.artplusplus.contpp.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,8 @@ import com.artplusplus.contpp.service.UsuarioService;
 
 import java.util.Optional;
 
-@Controller // This means that this class is a Controller
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController // This means that this class is a Controller
 @RequestMapping(path="/api") // This means URL's start with /api (after Application path)
 @RequiredArgsConstructor
 public class AuthController {

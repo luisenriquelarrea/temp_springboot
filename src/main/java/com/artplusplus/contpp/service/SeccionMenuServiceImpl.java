@@ -14,7 +14,7 @@ public class SeccionMenuServiceImpl implements SeccionMenuService {
 
     @Override
     public List<SeccionMenu> listSeccionMenu(){
-        return (List<SeccionMenu>) seccionMenuRepository.findAll();
+        return (List<SeccionMenu>) seccionMenuRepository.findByStatus(1);
     }
 
 

@@ -4,6 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.artplusplus.contpp.model.SeccionMenu;
 
-public interface SeccionMenuRepository extends CrudRepository<SeccionMenu, Long> {
+import java.util.List;
 
+public interface SeccionMenuRepository extends CrudRepository<SeccionMenu, Long> {
+    List<SeccionMenu> findByStatus(int status);
 }

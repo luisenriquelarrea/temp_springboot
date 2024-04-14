@@ -25,6 +25,8 @@ public class SeccionMenu {
     private String descripcion;
 
     private String navbarLabel;
+
+    private int status;
     
     @ManyToOne
     private Menu menu;

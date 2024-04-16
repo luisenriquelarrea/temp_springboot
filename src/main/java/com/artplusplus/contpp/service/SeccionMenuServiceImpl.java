@@ -7,6 +7,7 @@ import com.artplusplus.contpp.repository.SeccionMenuRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SeccionMenuServiceImpl implements SeccionMenuService {
@@ -26,5 +27,10 @@ public class SeccionMenuServiceImpl implements SeccionMenuService {
     @Override
     public SeccionMenu seccionMenuById(Long id){
         return seccionMenuRepository.findById(id).get();
+    }
+
+    @Override
+    public Optional<SeccionMenu> seccionMenuByDescripcion(String descripcion){
+        return seccionMenuRepository.findByDescripcion(descripcion);
     }
 }

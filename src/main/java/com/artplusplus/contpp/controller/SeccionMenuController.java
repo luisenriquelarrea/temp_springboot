@@ -17,6 +17,7 @@ import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.service.SeccionMenuService;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController // This means that this class is a Controller
@@ -28,6 +29,18 @@ public class SeccionMenuController {
     public @ResponseBody List<SeccionMenu> all() {
         // This returns a JSON or XML with the users
         return seccionMenuService.listSeccionMenu();
+    }
+
+    @PostMapping(path="/desc") // Map ONLY POST Requests
+    public ResponseEntity<SeccionMenu> getByDesc(@RequestBody SeccionMenu seccionMenu) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        Optional<SeccionMenu> seccionMenuOptional = 
+            seccionMenuService.seccionMenuByDescripcion(seccionMenu.getDescripcion());
+        if(seccionMenuOptional.isPresent()){
+            return ResponseEntity.ok(seccionMenuOptional.get());
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping(path="/{id}")

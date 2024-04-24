@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.artplusplus.contpp.model.SeccionMenuInput;
-import com.artplusplus.contpp.model.SeccionMenu;
+import com.artplusplus.contpp.dto.PostDto;
 import com.artplusplus.contpp.service.SeccionMenuInputService;
 
 import java.util.List;
@@ -28,10 +28,9 @@ public class SeccionMenuInputController {
     }
 
     @PostMapping(path="/seccion_menu") // Map ONLY POST Requests
-    public List<SeccionMenuInput> getBySeccionMenu(@RequestBody SeccionMenu seccionMenu) {
+    public List<SeccionMenuInput> getBySeccionMenu(@RequestBody PostDto postDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return seccionMenuInputService.listBySeccionMenu(seccionMenu.getId());
-        //return ResponseEntity.notFound().build();
+        return seccionMenuInputService.listBySeccionMenu(postDto.getSeccionMenuId());
     }
 }

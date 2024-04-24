@@ -13,7 +13,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import com.artplusplus.contpp.model.Usuario;
-import com.artplusplus.contpp.dto.UsuarioDto;
 import com.artplusplus.contpp.dto.AuthResponse;
 import com.artplusplus.contpp.dto.LoginRequest;
 import com.artplusplus.contpp.service.UsuarioService;

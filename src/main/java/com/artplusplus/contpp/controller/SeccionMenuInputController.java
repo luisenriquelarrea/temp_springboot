@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.artplusplus.contpp.model.SeccionMenuInput;
+import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.service.SeccionMenuInputService;
 
 import java.util.List;
@@ -22,5 +25,13 @@ public class SeccionMenuInputController {
     public @ResponseBody List<SeccionMenuInput> all() {
         // This returns a JSON or XML with the users
         return seccionMenuInputService.list();
+    }
+
+    @PostMapping(path="/seccion_menu") // Map ONLY POST Requests
+    public List<SeccionMenuInput> getBySeccionMenu(@RequestBody SeccionMenu seccionMenu) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return seccionMenuInputService.listBySeccionMenu(seccionMenu.getId());
+        //return ResponseEntity.notFound().build();
     }
 }

@@ -8,4 +8,6 @@ public interface SeccionMenuInputService {
 
     //Read operation
     List<SeccionMenuInput> list();
+
+    List<SeccionMenuInput> listBySeccionMenu(Long seccionMenuId);
 }

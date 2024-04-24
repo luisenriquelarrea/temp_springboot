@@ -16,4 +16,9 @@ public class SeccionMenuInputServiceImpl implements SeccionMenuInputService {
     public List<SeccionMenuInput> list(){
         return (List<SeccionMenuInput>) seccionMenuInputRepository.findAll();
     }
+
+    @Override
+    public List<SeccionMenuInput> listBySeccionMenu(Long seccionMenuId){
+        return (List<SeccionMenuInput>) seccionMenuInputRepository.findBySeccionMenu(seccionMenuId);
+    }
 }

@@ -7,4 +7,7 @@ import lombok.Data;
 public class PostDto {
     @NotBlank
     private Long seccionMenuId;
+
+    @NotBlank
+    private Long grupoId;
 }

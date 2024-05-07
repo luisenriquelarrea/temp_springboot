@@ -8,4 +8,6 @@ public interface AccionGrupoService {
 
     //Read operation
     List<AccionGrupo> list();
+
+    List<AccionGrupo> listByGrupo(Long grupoId);
 }

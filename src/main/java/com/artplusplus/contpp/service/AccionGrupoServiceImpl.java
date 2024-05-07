@@ -16,4 +16,9 @@ public class AccionGrupoServiceImpl implements AccionGrupoService {
     public List<AccionGrupo> list(){
         return (List<AccionGrupo>) accionGrupoRepository.findAll();
     }
+
+    @Override
+    public List<AccionGrupo> listByGrupo(Long grupoId){
+        return (List<AccionGrupo>) accionGrupoRepository.findByGrupoIdAndAccionOnNavbar(grupoId, 1);
+    }
 }

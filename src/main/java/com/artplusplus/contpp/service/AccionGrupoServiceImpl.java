@@ -3,6 +3,7 @@ package com.artplusplus.contpp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.artplusplus.contpp.model.AccionGrupo;
+import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.repository.AccionGrupoRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class AccionGrupoServiceImpl implements AccionGrupoService {
     }
 
     @Override
-    public List<AccionGrupo> listByGrupo(Long grupoId){
-        return (List<AccionGrupo>) accionGrupoRepository.findByGrupoIdAndAccionOnNavbar(grupoId, 1);
+    public List<SeccionMenu> getAllowedMenus(Long grupoId){
+        return (List<SeccionMenu>) accionGrupoRepository.getAllowedMenus(grupoId);
     }
 }

@@ -22,4 +22,6 @@ public class Menu {
     private Long id;
 
     private String descripcion;
+
+    private int status;
 }

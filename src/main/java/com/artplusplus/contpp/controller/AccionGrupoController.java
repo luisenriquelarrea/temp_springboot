@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.PostDto;
 import com.artplusplus.contpp.model.AccionGrupo;
+import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.service.AccionGrupoService;
 
 import java.util.List;
@@ -27,10 +28,10 @@ public class AccionGrupoController {
         return accionGrupoService.list();
     }
 
-    @PostMapping(path="/grupo") // Map ONLY POST Requests
-    public List<AccionGrupo> getByGrupo(@RequestBody PostDto postDto) {
+    @PostMapping(path="/allowed_menus") // Map ONLY POST Requests
+    public List<SeccionMenu> getByGrupo(@RequestBody PostDto postDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return accionGrupoService.listByGrupo(postDto.getGrupoId());
+        return accionGrupoService.getAllowedMenus(postDto.getGrupoId());
     }
 }

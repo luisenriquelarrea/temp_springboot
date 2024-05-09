@@ -25,4 +25,6 @@ public class Plaza {
     private String codigo;
 
     private String descripcion;
+
+    private int status;
 }

@@ -5,18 +5,15 @@ import java.util.List;
 import com.artplusplus.contpp.model.Plaza;
 
 public interface PlazaService {
-    //Cread operation
-    Plaza savePlaza(Plaza plaza);
-
+    //Create operation
+    Plaza save(Plaza plaza);
+    
     //Read operation
-    List<Plaza> listPlaza();
+    List<Plaza> list();
 
     //Delete operation
-    void deletePlaza(Long id);
+    void deleteById(Long id);
 
-    //Get by id operation
-    boolean getById(Long id);
-
-    //Get Plaza entity by id
-    Plaza plazaById(Long id);
+    //Exists by id operation
+    boolean existsById(Long id);
 }

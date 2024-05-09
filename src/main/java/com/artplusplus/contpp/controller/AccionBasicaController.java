@@ -3,6 +3,7 @@ package com.artplusplus.contpp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,5 +43,15 @@ public class AccionBasicaController {
     public @ResponseBody List<AccionBasica> all() {
         // This returns a JSON or XML with the users
         return accionBasicaService.list();
+    }
+
+    @DeleteMapping(path="/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable String id) {
+        Long accionBasicaId = Long.parseLong(id);
+        if(accionBasicaService.existsById(accionBasicaId)){
+            accionBasicaService.deleteById(accionBasicaId);
+            return ResponseEntity.ok("Deleted");
+        }
+        return ResponseEntity.ok("ID not found");
     }
 }

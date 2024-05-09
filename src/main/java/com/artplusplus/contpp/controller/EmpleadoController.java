@@ -46,9 +46,9 @@ public class EmpleadoController {
     }
 
     @DeleteMapping(path="/{id}")
-    public ResponseEntity<String> delete(@PathVariable String id) {
+    public ResponseEntity<String> deleteById(@PathVariable String id) {
         Long empleadoId = Long.parseLong(id);
-        if(empleadoService.getById(empleadoId)){
+        if(empleadoService.existsById(empleadoId)){
             empleadoService.deleteById(empleadoId);
             return ResponseEntity.ok("Deleted");
         }
@@ -57,8 +57,8 @@ public class EmpleadoController {
 
     @GetMapping(path="/{id}")
     public ResponseEntity<Empleado> getById(@PathVariable Long id){
-        if(empleadoService.getById(id)){
-            Empleado empleado = empleadoService.empleadoById(id);
+        if(empleadoService.existsById(id)){
+            Empleado empleado = empleadoService.getById(id);
             return ResponseEntity.ok(empleado);
         }
         return ResponseEntity.notFound().build();

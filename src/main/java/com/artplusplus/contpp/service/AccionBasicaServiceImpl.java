@@ -22,4 +22,14 @@ public class AccionBasicaServiceImpl implements AccionBasicaService {
     public List<AccionBasica> list(){
         return (List<AccionBasica>) accionBasicaRepository.findAll();
     }
+
+    @Override
+    public void deleteById(Long id){
+        accionBasicaRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return accionBasicaRepository.existsById(id);
+    }
 }

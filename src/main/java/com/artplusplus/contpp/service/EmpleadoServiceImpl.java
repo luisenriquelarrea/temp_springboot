@@ -28,12 +28,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     }
 
     @Override
-    public boolean getById(Long id){
+    public boolean existsById(Long id){
         return empleadoRepository.existsById(id);
     }
 
     @Override
-    public Empleado empleadoById(Long id){
+    public Empleado getById(Long id){
         return empleadoRepository.findById(id).get();
     }
 }

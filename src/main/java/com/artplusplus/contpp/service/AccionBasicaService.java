@@ -10,4 +10,10 @@ public interface AccionBasicaService {
     
     //Read operation
     List<AccionBasica> list();
+
+    //Delete operation
+    void deleteById(Long id);
+
+    //Exists by id operation
+    boolean existsById(Long id);
 }

@@ -14,9 +14,9 @@ public interface EmpleadoService {
     //Delete operation
     void deleteById(Long id);
 
-    //Get by id operation
-    boolean getById(Long id);
+    //Exists by id operation
+    boolean existsById(Long id);
 
-    //Get Empleado entity by id
-    Empleado empleadoById(Long id);
+    //Get entity by id
+    Empleado getById(Long id);
 }

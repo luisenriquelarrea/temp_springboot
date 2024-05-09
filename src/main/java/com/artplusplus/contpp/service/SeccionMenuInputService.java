@@ -5,9 +5,17 @@ import java.util.List;
 import com.artplusplus.contpp.model.SeccionMenuInput;
 
 public interface SeccionMenuInputService {
-
+    //Create operation
+    SeccionMenuInput save(SeccionMenuInput seccionMenuInput);
+    
     //Read operation
     List<SeccionMenuInput> list();
 
-    List<SeccionMenuInput> listBySeccionMenu(Long seccionMenuId);
+    //Delete operation
+    void deleteById(Long id);
+
+    //Exists by id operation
+    boolean existsById(Long id);
+
+    List<SeccionMenuInput> getBySeccionMenu(Long seccionMenuId);
 }

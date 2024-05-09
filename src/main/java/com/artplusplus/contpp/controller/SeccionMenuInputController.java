@@ -1,13 +1,17 @@
 package com.artplusplus.contpp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.artplusplus.contpp.model.SeccionMenuInput;
 import com.artplusplus.contpp.dto.PostDto;
@@ -19,7 +23,23 @@ import java.util.List;
 @RestController // This means that this class is a Controller
 @RequestMapping(path="/api/seccion_menu_input") // This means URL's start with / (after Application path)
 public class SeccionMenuInputController {
-    @Autowired private SeccionMenuInputService seccionMenuInputService;
+    @Autowired 
+    private SeccionMenuInputService seccionMenuInputService;
+
+    @PostMapping(path="/add") // Map ONLY POST Requests
+    public ResponseEntity<SeccionMenuInput> add(@RequestBody SeccionMenuInput seccionMenuInput) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        SeccionMenuInput obj = seccionMenuInputService.save(seccionMenuInput);
+        return ResponseEntity.ok(obj);
+    }
+
+    @PutMapping(path="/{id}")
+    public ResponseEntity<SeccionMenuInput> update(@RequestBody SeccionMenuInput seccionMenuInput,
+                     @PathVariable Long id){
+        SeccionMenuInput obj = seccionMenuInputService.save(seccionMenuInput);
+        return ResponseEntity.ok(obj);
+    }
 
     @GetMapping(path="/")
     public @ResponseBody List<SeccionMenuInput> all() {
@@ -27,10 +47,20 @@ public class SeccionMenuInputController {
         return seccionMenuInputService.list();
     }
 
+    @DeleteMapping(path="/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable String id) {
+        Long seccionMenuInputId = Long.parseLong(id);
+        if(seccionMenuInputService.existsById(seccionMenuInputId)){
+            seccionMenuInputService.deleteById(seccionMenuInputId);
+            return ResponseEntity.ok("Deleted");
+        }
+        return ResponseEntity.ok("ID not found");
+    }
+
     @PostMapping(path="/seccion_menu") // Map ONLY POST Requests
     public List<SeccionMenuInput> getBySeccionMenu(@RequestBody PostDto postDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return seccionMenuInputService.listBySeccionMenu(postDto.getSeccionMenuId());
+        return seccionMenuInputService.getBySeccionMenu(postDto.getSeccionMenuId());
     }
 }

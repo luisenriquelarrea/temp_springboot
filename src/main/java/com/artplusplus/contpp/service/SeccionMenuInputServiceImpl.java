@@ -10,7 +10,13 @@ import java.util.List;
 
 @Service
 public class SeccionMenuInputServiceImpl implements SeccionMenuInputService {
-    @Autowired private SeccionMenuInputRepository seccionMenuInputRepository;
+    @Autowired 
+    private SeccionMenuInputRepository seccionMenuInputRepository;
+
+    @Override
+    public SeccionMenuInput save(SeccionMenuInput seccionMenuInput) {
+        return seccionMenuInputRepository.save(seccionMenuInput);
+    }
 
     @Override
     public List<SeccionMenuInput> list(){
@@ -18,7 +24,17 @@ public class SeccionMenuInputServiceImpl implements SeccionMenuInputService {
     }
 
     @Override
-    public List<SeccionMenuInput> listBySeccionMenu(Long seccionMenuId){
+    public void deleteById(Long id){
+        seccionMenuInputRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id){
+        return seccionMenuInputRepository.existsById(id);
+    }
+
+    @Override
+    public List<SeccionMenuInput> getBySeccionMenu(Long seccionMenuId){
         return (List<SeccionMenuInput>) seccionMenuInputRepository.findBySeccionMenuId(seccionMenuId);
     }
 }

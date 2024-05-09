@@ -9,5 +9,6 @@ import java.util.Optional;
 
 public interface SeccionMenuRepository extends CrudRepository<SeccionMenu, Long> {
     List<SeccionMenu> findByStatus(int status);
-    Optional<SeccionMenu> findByDescripcion(String username);
+    
+    Optional<SeccionMenu> findByDescripcion(String descripcion);
 }

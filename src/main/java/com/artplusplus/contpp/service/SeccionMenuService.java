@@ -6,16 +6,21 @@ import java.util.Optional;
 import com.artplusplus.contpp.model.SeccionMenu;
 
 public interface SeccionMenuService {
-
+    //Create operation
+    SeccionMenu save(SeccionMenu seccionMenu);
+    
     //Read operation
-    List<SeccionMenu> listSeccionMenu();
+    List<SeccionMenu> list();
 
-    //Get by id operation
-    boolean getById(Long id);
+    //Delete operation
+    void deleteById(Long id);
 
-    //Get SeccionMenu entity by id
-    SeccionMenu seccionMenuById(Long id);
+    //Exists by id operation
+    boolean existsById(Long id);
+
+    //Get entity by id
+    SeccionMenu getById(Long id);
 
     //Get SeccionMenu entity by descripcion
-    Optional<SeccionMenu> seccionMenuByDescripcion(String descripcion);
+    Optional<SeccionMenu> getByDescripcion(String descripcion);
 }

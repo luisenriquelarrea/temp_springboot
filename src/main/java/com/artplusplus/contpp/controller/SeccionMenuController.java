@@ -3,10 +3,12 @@ package com.artplusplus.contpp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,20 +23,46 @@ import java.util.Optional;
 @RestController // This means that this class is a Controller
 @RequestMapping(path="/api/seccion_menu") // This means URL's start with / (after Application path)
 public class SeccionMenuController {
-    @Autowired private SeccionMenuService seccionMenuService;
+    @Autowired 
+    private SeccionMenuService seccionMenuService;
+
+    @PostMapping(path="/add") // Map ONLY POST Requests
+    public ResponseEntity<SeccionMenu> add(@RequestBody SeccionMenu seccionMenu) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        SeccionMenu obj = seccionMenuService.save(seccionMenu);
+        return ResponseEntity.ok(obj);
+    }
+
+    @PutMapping(path="/{id}")
+    public ResponseEntity<SeccionMenu> update(@RequestBody SeccionMenu seccionMenu,
+                     @PathVariable Long id){
+        SeccionMenu obj = seccionMenuService.save(seccionMenu);
+        return ResponseEntity.ok(obj);
+    }
 
     @GetMapping(path="/")
     public @ResponseBody List<SeccionMenu> all() {
         // This returns a JSON or XML with the users
-        return seccionMenuService.listSeccionMenu();
+        return seccionMenuService.list();
     }
 
-    @PostMapping(path="/desc") // Map ONLY POST Requests
-    public ResponseEntity<SeccionMenu> getByDesc(@RequestBody SeccionMenu seccionMenu) {
+    @DeleteMapping(path="/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable String id) {
+        Long seccionMenuId = Long.parseLong(id);
+        if(seccionMenuService.existsById(seccionMenuId)){
+            seccionMenuService.deleteById(seccionMenuId);
+            return ResponseEntity.ok("Deleted");
+        }
+        return ResponseEntity.ok("ID not found");
+    }
+
+    @PostMapping(path="/descripcion") // Map ONLY POST Requests
+    public ResponseEntity<SeccionMenu> getByDescripcion(@RequestBody SeccionMenu seccionMenu) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         Optional<SeccionMenu> seccionMenuOptional = 
-            seccionMenuService.seccionMenuByDescripcion(seccionMenu.getDescripcion());
+            seccionMenuService.getByDescripcion(seccionMenu.getDescripcion());
         if(seccionMenuOptional.isPresent()){
             return ResponseEntity.ok(seccionMenuOptional.get());
         }
@@ -43,8 +71,8 @@ public class SeccionMenuController {
 
     @GetMapping(path="/{id}")
     public ResponseEntity<SeccionMenu> getById(@PathVariable Long id){
-        if(seccionMenuService.getById(id)){
-            SeccionMenu seccionMenu = seccionMenuService.seccionMenuById(id);
+        if(seccionMenuService.existsById(id)){
+            SeccionMenu seccionMenu = seccionMenuService.getById(id);
             return ResponseEntity.ok(seccionMenu);
         }
         return ResponseEntity.notFound().build();

@@ -11,26 +11,36 @@ import java.util.Optional;
 
 @Service
 public class SeccionMenuServiceImpl implements SeccionMenuService {
-    @Autowired private SeccionMenuRepository seccionMenuRepository;
+    @Autowired 
+    private SeccionMenuRepository seccionMenuRepository;
 
     @Override
-    public List<SeccionMenu> listSeccionMenu(){
+    public SeccionMenu save(SeccionMenu seccionMenu) {
+        return seccionMenuRepository.save(seccionMenu);
+    }
+
+    @Override
+    public List<SeccionMenu> list(){
         return (List<SeccionMenu>) seccionMenuRepository.findByStatus(1);
     }
 
+    @Override
+    public void deleteById(Long id){
+        seccionMenuRepository.deleteById(id);
+    }
 
     @Override
-    public boolean getById(Long id){
+    public boolean existsById(Long id){
         return seccionMenuRepository.existsById(id);
     }
 
     @Override
-    public SeccionMenu seccionMenuById(Long id){
+    public SeccionMenu getById(Long id){
         return seccionMenuRepository.findById(id).get();
     }
 
     @Override
-    public Optional<SeccionMenu> seccionMenuByDescripcion(String descripcion){
+    public Optional<SeccionMenu> getByDescripcion(String descripcion){
         return seccionMenuRepository.findByDescripcion(descripcion);
     }
 }

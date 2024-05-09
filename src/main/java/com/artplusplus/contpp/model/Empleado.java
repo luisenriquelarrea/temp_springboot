@@ -22,6 +22,18 @@ public class Empleado {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private Plaza plaza;
+
+    @ManyToOne
+    private Departamento departamento;
+
+    @ManyToOne
+    private Puesto puesto;
+
+    @ManyToOne
+    private PeriodicidadPago periodicidadPago;
+
     private String nombreCompleto;
 
     private String rfc;
@@ -30,6 +42,21 @@ public class Empleado {
 
     private String nss;
     
-    @ManyToOne
-    private Plaza plaza;
+    private String fechaNacimiento;
+
+    private String telefono;
+
+    private float salarioBase;
+
+    private float salarioDiario;
+
+    private float salarioDiarioIntegrado;
+
+    private float salarioAsimilados;
+
+    private String fechaInicioLaboral;
+
+    private String fechaAltaImss;
+
+    private int status;
 }

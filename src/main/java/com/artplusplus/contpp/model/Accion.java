@@ -27,8 +27,6 @@ public class Accion {
 
     private String descripcion;
 
-    private String callMethod;
-
     private String label;
 
     private String icon;

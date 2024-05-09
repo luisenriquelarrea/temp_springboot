@@ -28,28 +28,28 @@ public class EmpleadoController {
     public ResponseEntity<Empleado> add(@RequestBody Empleado empleado) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        Empleado newEmpleado = empleadoService.saveEmpleado(empleado);
-        return ResponseEntity.ok(newEmpleado);
+        Empleado obj = empleadoService.save(empleado);
+        return ResponseEntity.ok(obj);
     }
 
     @GetMapping(path="/")
     public @ResponseBody List<Empleado> all() {
         // This returns a JSON or XML with the users
-        return empleadoService.listEmpleado();
+        return empleadoService.list();
     }
 
     @PutMapping(path="/{id}")
     public ResponseEntity<Empleado> update(@RequestBody Empleado empleado,
                      @PathVariable Long id){
-        Empleado updEmpleado = empleadoService.saveEmpleado(empleado);
-        return ResponseEntity.ok(updEmpleado);
+        Empleado obj = empleadoService.save(empleado);
+        return ResponseEntity.ok(obj);
     }
 
     @DeleteMapping(path="/{id}")
     public ResponseEntity<String> delete(@PathVariable String id) {
         Long empleadoId = Long.parseLong(id);
         if(empleadoService.getById(empleadoId)){
-            empleadoService.deleteEmpleado(empleadoId);
+            empleadoService.deleteById(empleadoId);
             return ResponseEntity.ok("Deleted");
         }
         return ResponseEntity.ok("ID not found");

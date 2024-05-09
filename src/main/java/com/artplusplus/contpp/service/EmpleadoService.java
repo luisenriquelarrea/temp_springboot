@@ -6,16 +6,13 @@ import com.artplusplus.contpp.model.Empleado;
 
 public interface EmpleadoService {
     //Cread operation
-    Empleado saveEmpleado(Empleado empleado);
+    Empleado save(Empleado empleado);
 
     //Read operation
-    List<Empleado> listEmpleado();
-
-    //Update operation
-    //Empleado updateEmpleado(Empleado empleado, Long id);
+    List<Empleado> list();
 
     //Delete operation
-    void deleteEmpleado(Long id);
+    void deleteById(Long id);
 
     //Get by id operation
     boolean getById(Long id);

@@ -5,7 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +27,13 @@ public class AccionBasicaController {
     public ResponseEntity<AccionBasica> add(@RequestBody AccionBasica accionBasica) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+        AccionBasica obj = accionBasicaService.save(accionBasica);
+        return ResponseEntity.ok(obj);
+    }
+
+    @PutMapping(path="/{id}")
+    public ResponseEntity<AccionBasica> update(@RequestBody AccionBasica accionBasica,
+                     @PathVariable Long id){
         AccionBasica obj = accionBasicaService.save(accionBasica);
         return ResponseEntity.ok(obj);
     }

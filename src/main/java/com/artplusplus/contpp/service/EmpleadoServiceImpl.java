@@ -13,36 +13,17 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     @Autowired private EmpleadoRepository empleadoRepository;
 
     @Override
-    public Empleado saveEmpleado(Empleado empleado){
+    public Empleado save(Empleado empleado){
         return empleadoRepository.save(empleado);
     }
 
     @Override
-    public List<Empleado> listEmpleado(){
+    public List<Empleado> list(){
         return (List<Empleado>) empleadoRepository.findAll();
     }
 
-    /*public Empleado updateEmpleado(Empleado empleado, Long id){
-        Empleado empleadoDB = empleadoRepository.findById(id).get();
-        
-        if(Objects.nonNull(empleado.getNombreCompleto()) 
-            && !"".equalsIgnoreCase(empleado.getNombreCompleto())){
-            empleadoDB.setNombreCompleto(empleado.getNombreCompleto());
-        }
-        if(Objects.nonNull(empleado.getRfc()) 
-            && !"".equalsIgnoreCase(empleado.getRfc())){
-            empleadoDB.setRfc(empleado.getRfc());
-        }
-        if(Objects.nonNull(empleado.getCurp()) 
-            && !"".equalsIgnoreCase(empleado.getCurp())){
-            empleadoDB.setCurp(empleado.getCurp());
-        }
-        
-        return empleadoRepository.save(empleadoDB);
-    }*/
-
     @Override
-    public void deleteEmpleado(Long id){
+    public void deleteById(Long id){
         empleadoRepository.deleteById(id);
     }
 

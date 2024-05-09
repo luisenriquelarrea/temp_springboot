@@ -22,7 +22,8 @@ import java.util.List;
 @RestController // This means that this class is a Controller
 @RequestMapping(path="/api/accion_basica") // This means URL's start with / (after Application path)
 public class AccionBasicaController {
-    @Autowired private AccionBasicaService accionBasicaService;
+    @Autowired 
+    private AccionBasicaService accionBasicaService;
 
     @PostMapping(path="/add") // Map ONLY POST Requests
     public ResponseEntity<AccionBasica> add(@RequestBody AccionBasica accionBasica) {

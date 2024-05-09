@@ -23,5 +23,13 @@ public class AccionBasica {
 
     private String descripcion;
 
+    private String label;
+
+    private String icon;
+
+    private int onNavbar;
+
+    private int onTable;
+
     private int status;
 }

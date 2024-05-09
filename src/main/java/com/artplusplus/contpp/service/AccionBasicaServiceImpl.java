@@ -10,7 +10,13 @@ import java.util.List;
 
 @Service
 public class AccionBasicaServiceImpl implements AccionBasicaService {
-    @Autowired private AccionBasicaRepository accionBasicaRepository;
+    @Autowired 
+    private AccionBasicaRepository accionBasicaRepository;
+
+    @Override
+    public AccionBasica save(AccionBasica accionBasica) {
+        return accionBasicaRepository.save(accionBasica);
+    }
 
     @Override
     public List<AccionBasica> list(){

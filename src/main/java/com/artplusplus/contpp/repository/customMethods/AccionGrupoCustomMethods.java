@@ -38,4 +38,14 @@ public interface AccionGrupoCustomMethods {
         "AND ag.accion.onTable = 1 ")
     List<Accion> getAllowedTableActions(@Param("grupoId") Long grupoId, 
         @Param("seccionMenuId") Long seccionMenuId);
+
+        @Query("SELECT ag.accion "+
+        "FROM AccionGrupo ag "+
+        "WHERE ag.grupo.id = :grupoId "+
+        "AND ag.accion.seccionMenu.id = :seccionMenuId "+
+        "AND ag.grupo.status = 1 "+
+        "AND ag.accion.status = 1 "+
+        "AND ag.accion.descripcion = 'xls' ")
+    List<Accion> getAllowedExportData(@Param("grupoId") Long grupoId, 
+        @Param("seccionMenuId") Long seccionMenuId);
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.PostDto;
 import com.artplusplus.contpp.model.AccionGrupo;
+import com.artplusplus.contpp.model.Accion;
 import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.service.AccionGrupoService;
 
@@ -33,5 +34,29 @@ public class AccionGrupoController {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         return accionGrupoService.getAllowedMenus(postDto.getGrupoId());
+    }
+
+    @PostMapping(path="/allowed_breadcrumbs") // Map ONLY POST Requests
+    public List<Accion> getAllowedBreadcrumbs(@RequestBody PostDto postDto) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return accionGrupoService.getAllowedBreadcrumbs(postDto.getGrupoId(), 
+            postDto.getSeccionMenuId());
+    }
+
+    @PostMapping(path="/allowed_export_data") // Map ONLY POST Requests
+    public List<Accion> getAllowedExportData(@RequestBody PostDto postDto) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return accionGrupoService.getAllowedExportData(postDto.getGrupoId(), 
+            postDto.getSeccionMenuId());
+    }
+
+    @PostMapping(path="/allowed_table_actions") // Map ONLY POST Requests
+    public List<Accion> getAllowedTableActions(@RequestBody PostDto postDto) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return accionGrupoService.getAllowedTableActions(postDto.getGrupoId(), 
+            postDto.getSeccionMenuId());
     }
 }

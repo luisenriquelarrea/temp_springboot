@@ -3,6 +3,7 @@ package com.artplusplus.contpp.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.model.Usuario;
 import com.artplusplus.contpp.dto.UsuarioDto;
 import com.artplusplus.contpp.repository.UsuarioRepository;
@@ -20,17 +21,28 @@ public class UsuarioServiceImpl implements UsuarioService {
     private ModelMapper modelMapper;
 
     @Override
-    public boolean getById(Long id){
+    public UsuarioDto save(Usuario seccionMenu) {
+        Usuario usuario = usuarioRepository.save(seccionMenu);
+        return (UsuarioDto) modelMapper.map(usuario, UsuarioDto.class);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id){
         return usuarioRepository.existsById(id);
     }
 
     @Override
-    public Optional<Usuario> getUserByName(String name) {
+    public Optional<Usuario> getByName(String name) {
         return usuarioRepository.findByName(name);
     }
 
     @Override
-    public UsuarioDto usuarioById(Long id){
+    public UsuarioDto getById(Long id){
         Usuario usuario = usuarioRepository.findById(id).get(); 
         UsuarioDto usuarioDto = modelMapper.map(usuario, UsuarioDto.class); 
         return usuarioDto;
@@ -38,7 +50,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Optional<Usuario> validUsernameAndPassword(String name, String password) {
-        return getUserByName(name)
+        return getByName(name)
                 .filter(usuario -> Objects.equals(password, usuario.getPassword()));
     }
 }

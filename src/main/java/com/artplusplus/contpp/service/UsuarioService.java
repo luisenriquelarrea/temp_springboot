@@ -5,14 +5,19 @@ import com.artplusplus.contpp.model.Usuario;
 
 import java.util.Optional;
 public interface UsuarioService {
+    //Create operation
+    UsuarioDto save(Usuario usuario);
 
-    //Get by id operation
-    boolean getById(Long id);
+    //Delete operation
+    void deleteById(Long id);
 
-    Optional<Usuario> getUserByName(String name);
+    //Exists by id operation
+    boolean existsById(Long id);
 
-    //Get Usuario entity by id
-    UsuarioDto usuarioById(Long id);
+    Optional<Usuario> getByName(String name);
+
+    //Get entity by id
+    UsuarioDto getById(Long id);
 
     Optional<Usuario> validUsernameAndPassword(String name, String password);
 }

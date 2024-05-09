@@ -1,13 +1,12 @@
 package com.artplusplus.contpp.service;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.model.Usuario;
 import com.artplusplus.contpp.dto.UsuarioDto;
 import com.artplusplus.contpp.repository.UsuarioRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Objects;

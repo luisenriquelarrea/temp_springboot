@@ -12,22 +12,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "seccion_menu")
+@Table(name = "sucursal")
 @Data
 @RequiredArgsConstructor
-@Getter
+@Getter 
 @Setter
-public class SeccionMenu {
+public class Sucursal {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private Menu menu;
+    private Plaza plaza;
 
     private String descripcion;
-
-    private String navbarLabel;
 
     private int status;
 }

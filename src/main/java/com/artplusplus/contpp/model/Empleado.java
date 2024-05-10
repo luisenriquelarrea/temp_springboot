@@ -23,7 +23,7 @@ public class Empleado {
     private Long id;
 
     @ManyToOne
-    private Plaza plaza;
+    private Sucursal sucursal;
 
     @ManyToOne
     private Departamento departamento;

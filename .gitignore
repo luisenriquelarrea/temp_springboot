@@ -1,4 +1,5 @@
 *#
+*.jar
 *.iml
 *.ipr
 *.iws
@@ -40,5 +41,3 @@ secrets.yml
 .sts4-cache
 .git-hooks/
 env.properties
-log.txt
-pid.file

@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "altas_bajas_imss")
+@Table(name = "alta_baja_imss")
 @Data
 @RequiredArgsConstructor
 @Getter

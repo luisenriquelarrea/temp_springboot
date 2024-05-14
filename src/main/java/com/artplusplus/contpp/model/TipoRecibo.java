@@ -5,6 +5,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +22,19 @@ public class TipoRecibo {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
     private TipoRegimen tipoRegimen;
 
+    @ManyToOne
     private TipoNomina tipoNomina;
 
+    @ManyToOne
     private TipoContrato tipoContrato;
 
+    @ManyToOne
     private TipoJornada tipoJornada;
 
+    @ManyToOne
     private RiesgoPuesto riesgoPuesto;
 
     private String codigo;

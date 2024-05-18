@@ -34,6 +34,9 @@ public class Empleado {
     @ManyToOne
     private PeriodicidadPago periodicidadPago;
 
+    @ManyToOne
+    private Escolaridad escolaridad;
+
     private String nombreCompleto;
 
     private String rfc;

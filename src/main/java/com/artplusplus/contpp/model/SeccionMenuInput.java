@@ -18,12 +18,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SeccionMenuInput {
-    @ManyToOne
-    private SeccionMenu seccionMenu;
-
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    private SeccionMenu seccionMenu;
 
     private String inputType;
 

@@ -5,6 +5,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,22 +22,31 @@ public class ComplementoPago {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
     private Empresa empresa;
 
+    @ManyToOne
     private Plaza plaza;
 
+    @ManyToOne
     private MetodoPago metodoPago;
 
+    @ManyToOne
     private FormaPago formaPago;
 
+    @ManyToOne
     private TipoCambio tipoCambio;
 
+    @ManyToOne
     private TipoComprobante tipoComprobante;
 
+    @ManyToOne
     private UsoCfdi usoCfdi;
 
+    @ManyToOne
     private TipoOperacion tipoOperacion;
 
+    @ManyToOne
     private Cliente cliente;
 
     private String serie;

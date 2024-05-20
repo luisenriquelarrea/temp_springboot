@@ -20,7 +20,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController // This means that this class is a Controller
-@RequestMapping(path="/api/NotaCreditoDocumento") // This means URL's start with / (after Application path)
+@RequestMapping(path="/api/nota_credito_documento") // This means URL's start with / (after Application path)
 public class NotaCreditoDocumentoController {
     @Autowired
     private NotaCreditoDocumentoService notaCreditoDocumentoService;

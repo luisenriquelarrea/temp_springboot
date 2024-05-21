@@ -32,7 +32,7 @@ public class AuthController {
             = usuarioService.validUsernameAndPassword(loginRequest.getName(), loginRequest.getPassword());
         if (userOptional.isPresent()) {
             Usuario usuario = userOptional.get();
-            return ResponseEntity.ok(new AuthResponse(usuario.getId(), usuario.getName()));
+            return ResponseEntity.ok(new AuthResponse(usuario.getGrupo(), usuario.getName()));
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

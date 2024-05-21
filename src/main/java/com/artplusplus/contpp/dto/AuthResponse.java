@@ -1,3 +1,5 @@
 package com.artplusplus.contpp.dto;
 
-public record AuthResponse(Long id, String name) { }
+import com.artplusplus.contpp.model.Grupo;
+
+public record AuthResponse(Grupo grupo, String name) { }

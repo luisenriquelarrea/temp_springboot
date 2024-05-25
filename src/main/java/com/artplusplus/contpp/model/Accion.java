@@ -31,6 +31,8 @@ public class Accion {
 
     private String icon;
 
+    private String callMethod;
+
     private int onNavbar;
 
     private int onTable;

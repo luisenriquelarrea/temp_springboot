@@ -27,6 +27,8 @@ public class AccionBasica {
 
     private String icon;
 
+    private String callMethod;
+
     private int onNavbar;
 
     private int onTable;

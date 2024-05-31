@@ -12,5 +12,5 @@ public class PostDto {
     private Long grupoId;
 
     @NotBlank
-    private String column;
+    private String columna;
 }

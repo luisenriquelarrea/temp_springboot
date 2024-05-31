@@ -63,4 +63,11 @@ public class SeccionMenuInputController {
         // @RequestParam means it is a parameter from the GET or POST request
         return seccionMenuInputService.getBySeccionMenu(postDto.getSeccionMenuId());
     }
+
+    @PostMapping(path="/inputs") // Map ONLY POST Requests
+    public List<SeccionMenuInput> getInputs(@RequestBody PostDto postDto) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return seccionMenuInputService.getInputs(postDto.getSeccionMenuId(), postDto.getColumn());
+    }
 }

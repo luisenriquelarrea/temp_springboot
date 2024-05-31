@@ -10,4 +10,7 @@ public class PostDto {
 
     @NotBlank
     private Long grupoId;
+
+    @NotBlank
+    private String column;
 }

@@ -18,4 +18,6 @@ public interface SeccionMenuInputService {
     boolean existsById(Long id);
 
     List<SeccionMenuInput> getBySeccionMenu(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputs(Long seccionMenuId, String column);
 }

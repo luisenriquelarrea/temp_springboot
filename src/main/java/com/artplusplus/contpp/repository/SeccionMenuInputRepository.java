@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface SeccionMenuInputRepository extends CrudRepository<SeccionMenuInput, Long>,  SeccionMenuInputCustomMethods{
     List<SeccionMenuInput> findBySeccionMenuId(Long seccionMenuId);
+
+    List<SeccionMenuInput> findBySeccionMenuIdAndAltaAndStatus(Long seccionMenuId, int alta, int status);
 }

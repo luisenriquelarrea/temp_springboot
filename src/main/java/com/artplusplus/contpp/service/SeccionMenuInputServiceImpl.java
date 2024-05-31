@@ -39,7 +39,7 @@ public class SeccionMenuInputServiceImpl implements SeccionMenuInputService {
     }
 
     @Override
-    public List<SeccionMenuInput> getInputs(Long seccionMenuId, String column){
-        return (List<SeccionMenuInput>) seccionMenuInputRepository.getInputs(seccionMenuId, column);
+    public List<SeccionMenuInput> getInputs(Long seccionMenuId){
+        return (List<SeccionMenuInput>) seccionMenuInputRepository.findBySeccionMenuIdAndAltaAndStatus(seccionMenuId, 1, 1);
     }
 }

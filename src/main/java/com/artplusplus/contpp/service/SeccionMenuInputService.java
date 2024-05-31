@@ -19,5 +19,5 @@ public interface SeccionMenuInputService {
 
     List<SeccionMenuInput> getBySeccionMenu(Long seccionMenuId);
 
-    List<SeccionMenuInput> getInputs(Long seccionMenuId, String column);
+    List<SeccionMenuInput> getInputs(Long seccionMenuId);
 }

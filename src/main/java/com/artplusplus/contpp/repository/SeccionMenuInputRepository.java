@@ -12,4 +12,8 @@ public interface SeccionMenuInputRepository extends CrudRepository<SeccionMenuIn
     List<SeccionMenuInput> findBySeccionMenuId(Long seccionMenuId);
 
     List<SeccionMenuInput> findBySeccionMenuIdAndAltaAndStatus(Long seccionMenuId, int alta, int status);
+
+    List<SeccionMenuInput> findBySeccionMenuIdAndModificaAndStatus(Long seccionMenuId, int modifica, int status);
+
+    List<SeccionMenuInput> findBySeccionMenuIdAndListaAndStatus(Long seccionMenuId, int lista, int status);
 }

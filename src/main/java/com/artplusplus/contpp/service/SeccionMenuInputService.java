@@ -19,5 +19,9 @@ public interface SeccionMenuInputService {
 
     List<SeccionMenuInput> getBySeccionMenu(Long seccionMenuId);
 
-    List<SeccionMenuInput> getInputs(Long seccionMenuId);
+    List<SeccionMenuInput> getInputsAlta(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsModifica(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsLista(Long seccionMenuId);
 }

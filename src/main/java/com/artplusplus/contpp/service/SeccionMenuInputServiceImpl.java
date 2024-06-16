@@ -55,4 +55,10 @@ public class SeccionMenuInputServiceImpl implements SeccionMenuInputService {
         return (List<SeccionMenuInput>) 
             seccionMenuInputRepository.findBySeccionMenuIdAndListaAndStatus(seccionMenuId, 1, 1);
     }
+
+    @Override
+    public List<SeccionMenuInput> getInputsFiltro(Long seccionMenuId){
+        return (List<SeccionMenuInput>) 
+            seccionMenuInputRepository.findBySeccionMenuIdAndFiltroAndStatus(seccionMenuId, 1, 1);
+    }
 }

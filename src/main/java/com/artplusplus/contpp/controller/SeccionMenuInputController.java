@@ -75,6 +75,8 @@ public class SeccionMenuInputController {
             return seccionMenuInputService.getInputsModifica(postDto.getSeccionMenuId());
         if(columna.equalsIgnoreCase("lista"))
             return seccionMenuInputService.getInputsLista(postDto.getSeccionMenuId());
+        if(columna.equalsIgnoreCase("filtro"))
+            return seccionMenuInputService.getInputsFiltro(postDto.getSeccionMenuId());
         return List.of();
     }
 }

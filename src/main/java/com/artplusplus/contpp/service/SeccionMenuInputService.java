@@ -24,4 +24,6 @@ public interface SeccionMenuInputService {
     List<SeccionMenuInput> getInputsModifica(Long seccionMenuId);
 
     List<SeccionMenuInput> getInputsLista(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsFiltro(Long seccionMenuId);
 }

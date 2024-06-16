@@ -13,6 +13,7 @@ public interface AccionGrupoCustomMethods {
         "FROM AccionGrupo ag "+
         "WHERE ag.grupo.id = :grupoId "+
         "AND ag.accion.seccionMenu.id = :seccionMenuId "+
+        "AND ag.status = 1 "+
         "AND ag.grupo.status = 1 "+
         "AND ag.accion.status = 1 "+
         "AND ag.accion.onNavbar = 1 ")
@@ -22,6 +23,7 @@ public interface AccionGrupoCustomMethods {
     @Query("SELECT ag.accion.seccionMenu "+
         "FROM AccionGrupo ag "+
         "WHERE ag.grupo.id = :grupoId "+
+        "AND ag.status = 1 "+
         "AND ag.grupo.status = 1 "+
         "AND ag.accion.status = 1 "+
         "AND ag.accion.onNavbar = 1 "+
@@ -33,6 +35,7 @@ public interface AccionGrupoCustomMethods {
         "FROM AccionGrupo ag "+
         "WHERE ag.grupo.id = :grupoId "+
         "AND ag.accion.seccionMenu.id = :seccionMenuId "+
+        "AND ag.status = 1 "+
         "AND ag.grupo.status = 1 "+
         "AND ag.accion.status = 1 "+
         "AND ag.accion.onTable = 1 ")
@@ -43,6 +46,7 @@ public interface AccionGrupoCustomMethods {
         "FROM AccionGrupo ag "+
         "WHERE ag.grupo.id = :grupoId "+
         "AND ag.accion.seccionMenu.id = :seccionMenuId "+
+        "AND ag.status = 1 "+
         "AND ag.grupo.status = 1 "+
         "AND ag.accion.status = 1 "+
         "AND ag.accion.descripcion = 'xls' ")

@@ -70,4 +70,11 @@ public class EmpleadoController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PostMapping(path="/filteredList") // Map ONLY POST Requests
+    public @ResponseBody List<Empleado> filteredList(@RequestBody Empleado empleado) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return empleadoService.filteredList(empleado.getRfc());
+    }
 }

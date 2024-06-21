@@ -19,4 +19,6 @@ public interface EmpleadoService {
 
     //Get entity by id
     Empleado getById(Long id);
+
+    List<Empleado> filteredList(String rfc);
 }

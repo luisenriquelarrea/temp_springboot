@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.artplusplus.contpp.model.Empleado;
 import com.artplusplus.contpp.repository.EmpleadoRepository;
+import com.artplusplus.contpp.repository.specifications.EmpleadoSpecifications;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,5 +37,10 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     @Override
     public Empleado getById(Long id){
         return empleadoRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Empleado> filteredList(String rfc){
+        return (List<Empleado>) empleadoRepository.findAll(EmpleadoSpecifications.rfc(rfc));
     }
 }

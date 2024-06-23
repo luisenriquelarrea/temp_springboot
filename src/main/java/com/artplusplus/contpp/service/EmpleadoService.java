@@ -2,6 +2,8 @@ package com.artplusplus.contpp.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.domain.Specification;
+
 import com.artplusplus.contpp.model.Empleado;
 
 public interface EmpleadoService {
@@ -20,5 +22,5 @@ public interface EmpleadoService {
     //Get entity by id
     Empleado getById(Long id);
 
-    List<Empleado> filteredList(String rfc);
+    List<Empleado> filteredList(Specification<Empleado> specs);
 }

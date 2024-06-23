@@ -2,6 +2,7 @@ package com.artplusplus.contpp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.model.Empleado;
+import com.artplusplus.contpp.repository.specifications.EmpleadoSpecifications;
 import com.artplusplus.contpp.service.EmpleadoService;
 
 import java.util.List;
@@ -75,6 +77,7 @@ public class EmpleadoController {
     public @ResponseBody List<Empleado> filteredList(@RequestBody Empleado empleado) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return empleadoService.filteredList(empleado.getRfc());
+        Specification<Empleado> specs = new EmpleadoSpecifications(empleado);
+        return empleadoService.filteredList(specs);
     }
 }

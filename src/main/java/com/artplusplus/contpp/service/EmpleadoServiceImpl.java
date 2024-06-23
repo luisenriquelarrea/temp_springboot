@@ -1,10 +1,10 @@
 package com.artplusplus.contpp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.artplusplus.contpp.model.Empleado;
 import com.artplusplus.contpp.repository.EmpleadoRepository;
-import com.artplusplus.contpp.repository.specifications.EmpleadoSpecifications;
 
 import org.springframework.stereotype.Service;
 
@@ -40,7 +40,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     }
 
     @Override
-    public List<Empleado> filteredList(String rfc){
-        return (List<Empleado>) empleadoRepository.findAll(EmpleadoSpecifications.rfc(rfc));
+    public List<Empleado> filteredList(Specification<Empleado> specs){
+        return (List<Empleado>) empleadoRepository.findAll(specs);
     }
 }

@@ -31,6 +31,11 @@ public class EmpleadoSpecifications implements Specification<Empleado>{
         if(empleado.getCurp() != null){
             predicates.add(criteriaBuilder.equal(root.get("curp"), empleado.getCurp()));
         }
+        if(empleado.getSucursal().getDescripcion() != null){
+            predicates.add(criteriaBuilder.equal(
+                root.join("sucursal").get("descripcion"), 
+                empleado.getSucursal().getDescripcion()));
+        }
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
     }
 }

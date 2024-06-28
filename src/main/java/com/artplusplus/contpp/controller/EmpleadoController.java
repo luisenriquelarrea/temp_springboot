@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.artplusplus.contpp.dto.EmpleadoDto;
 import com.artplusplus.contpp.model.Empleado;
 import com.artplusplus.contpp.repository.specifications.EmpleadoSpecifications;
 import com.artplusplus.contpp.service.EmpleadoService;
@@ -74,10 +75,10 @@ public class EmpleadoController {
     }
 
     @PostMapping(path="/filteredList") // Map ONLY POST Requests
-    public @ResponseBody List<Empleado> filteredList(@RequestBody Empleado empleado) {
+    public @ResponseBody List<Empleado> filteredList(@RequestBody EmpleadoDto empleadoDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        Specification<Empleado> specs = new EmpleadoSpecifications(empleado);
+        Specification<Empleado> specs = new EmpleadoSpecifications(empleadoDto);
         return empleadoService.filteredList(specs);
     }
 }

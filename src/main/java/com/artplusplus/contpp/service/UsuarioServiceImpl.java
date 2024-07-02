@@ -36,8 +36,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> getByName(String name) {
-        return usuarioRepository.findByName(name);
+    public Optional<Usuario> getByUsername(String username) {
+        return usuarioRepository.findByUsername(username);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> validUsernameAndPassword(String name, String password) {
-        return getByName(name)
+    public Optional<Usuario> validUsernameAndPassword(String username, String password) {
+        return getByUsername(username)
                 .filter(usuario -> Objects.equals(password, usuario.getPassword()));
     }
 }

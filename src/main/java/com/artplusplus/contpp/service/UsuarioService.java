@@ -14,10 +14,10 @@ public interface UsuarioService {
     //Exists by id operation
     boolean existsById(Long id);
 
-    Optional<Usuario> getByName(String name);
+    Optional<Usuario> getByUsername(String username);
 
     //Get entity by id
     UsuarioDto getById(Long id);
 
-    Optional<Usuario> validUsernameAndPassword(String name, String password);
+    Optional<Usuario> validUsernameAndPassword(String username, String password);
 }

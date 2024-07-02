@@ -13,5 +13,7 @@ public class UsuarioDto {
 
     private String name;
 
+    private String username;
+
     private String email;
 }

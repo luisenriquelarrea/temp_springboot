@@ -1,4 +1,4 @@
-package com.dulcesmontes.logistica.storage;
+package com.artplusplus.contpp.storage;
 
 public class StorageFileNotFoundException extends StorageException {
 

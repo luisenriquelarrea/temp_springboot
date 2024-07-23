@@ -1,4 +1,4 @@
-package com.artplusplus.contpp.classes;
+package com.artplusplus.contpp.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

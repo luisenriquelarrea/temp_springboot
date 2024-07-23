@@ -1,4 +1,4 @@
-package com.dulcesmontes.logistica.vendor;
+package com.artplusplus.contpp.vendor;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SendMessage;

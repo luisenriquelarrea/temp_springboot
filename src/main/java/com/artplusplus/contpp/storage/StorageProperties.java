@@ -1,4 +1,4 @@
-package com.dulcesmontes.logistica.storage;
+package com.artplusplus.contpp.storage;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

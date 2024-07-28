@@ -45,7 +45,13 @@ public class SeccionMenuInput {
 
     private int filtro;
 
+    private int encabezado;
+
     private int orden;
+
+    private String selectColumnas;
+
+    private String urlGet;
 
     private String modelo;
 

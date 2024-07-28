@@ -61,4 +61,10 @@ public class SeccionMenuInputServiceImpl implements SeccionMenuInputService {
         return (List<SeccionMenuInput>) 
             seccionMenuInputRepository.findBySeccionMenuIdAndFiltroAndStatus(seccionMenuId, 1, 1);
     }
+
+    @Override
+    public List<SeccionMenuInput> getInputsEncabezado(Long seccionMenuId){
+        return (List<SeccionMenuInput>) 
+            seccionMenuInputRepository.findBySeccionMenuIdAndEncabezadoAndStatusOrderByOrden(seccionMenuId, 1, 1);
+    }
 }

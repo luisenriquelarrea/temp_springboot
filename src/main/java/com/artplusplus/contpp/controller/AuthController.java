@@ -28,11 +28,24 @@ public class AuthController {
 
     @PostMapping(path="/authenticate")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-        Optional<Usuario> userOptional 
-            = usuarioService.validUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
+        Optional<Usuario> userOptional = usuarioService.validUsernameAndPassword(
+            loginRequest.getUsername(), loginRequest.getPassword());
         if (userOptional.isPresent()) {
             Usuario usuario = userOptional.get();
-            return ResponseEntity.ok(new AuthResponse(usuario.getGrupo(), usuario.getUsername()));
+            return ResponseEntity.ok(new AuthResponse(usuario.getGrupo(), 
+                usuario.getId(), usuario.getUsername()));
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+    @PostMapping(path="/user_is_active")
+    public ResponseEntity<AuthResponse> userIsActive(@RequestBody LoginRequest loginRequest) {
+        Optional<Usuario> userOptional = usuarioService.getByUsername(
+            loginRequest.getUsername());
+        if (userOptional.isPresent()) {
+            Usuario usuario = userOptional.get();
+            return ResponseEntity.ok(new AuthResponse(usuario.getGrupo(), 
+                usuario.getId(), usuario.getUsername()));
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

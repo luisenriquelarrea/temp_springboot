@@ -3,6 +3,8 @@ package com.artplusplus.contpp;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +14,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import com.artplusplus.contpp.storage.StorageProperties;
 import com.artplusplus.contpp.storage.StorageService;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class})
 @RestController
 @EnableConfigurationProperties(StorageProperties.class)
 public class ContppApplication {

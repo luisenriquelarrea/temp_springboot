@@ -47,6 +47,8 @@ public class SeccionMenuInput {
 
     private int encabezado;
 
+    private int newLine;
+
     private int orden;
 
     private String selectColumnas;

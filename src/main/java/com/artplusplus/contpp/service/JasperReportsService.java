@@ -8,6 +8,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.util.JRSaver;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -21,16 +22,28 @@ public class JasperReportsService {
     @Autowired
     private DataSource dataSource;
 
+    private JasperReport jasperReport;
+
     private JasperPrint jasperPrint;
 
     public void generateReport(String template, Map<String, Object> parameters){
         try{
-            InputStream reportStream 
-                = getClass().getResourceAsStream("/jaspertemplates/"+template);
-            JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
+            compileReport(template);
             jasperPrint = JasperFillManager.fillReport(jasperReport, 
                 parameters, dataSource.getConnection());
         } catch (JRException | SQLException ex) {
+            Logger.getLogger(JasperReportsService.class.getName()).log(Level.SEVERE, 
+                null, ex);
+        }
+    }
+
+    public void compileReport(String template){
+        try{
+            InputStream reportStream 
+                = getClass().getResourceAsStream("/jaspertemplates/"+template);
+            jasperReport = JasperCompileManager.compileReport(reportStream);
+            JRSaver.saveObject(jasperReport, template.replace(".jrxml", ".jasper"));
+        }catch (JRException ex){
             Logger.getLogger(JasperReportsService.class.getName()).log(Level.SEVERE, 
                 null, ex);
         }

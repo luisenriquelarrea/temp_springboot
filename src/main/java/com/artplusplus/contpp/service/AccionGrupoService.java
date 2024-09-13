@@ -2,8 +2,10 @@ package com.artplusplus.contpp.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 
+import com.artplusplus.contpp.dto.AccionGrupoDto;
 import com.artplusplus.contpp.model.Accion;
 import com.artplusplus.contpp.model.AccionGrupo;
 import com.artplusplus.contpp.model.SeccionMenu;
@@ -25,7 +27,13 @@ public interface AccionGrupoService {
     AccionGrupo getById(Long id);
 
     //Read operation filtered by specifications
-    List<AccionGrupo> filteredList(Specification<AccionGrupo> specs);
+    List<AccionGrupoDto> filteredList(Specification<AccionGrupo> specs, PageRequest pageRequest);
+
+    //Count entity records
+    long count();
+
+    //Count entity records with filter
+    long countFilteredList(Specification<AccionGrupo> specs);
 
     List<SeccionMenu> getAllowedMenus(Long grupoId);
 

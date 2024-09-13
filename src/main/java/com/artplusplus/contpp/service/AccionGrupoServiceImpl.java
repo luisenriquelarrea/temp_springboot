@@ -1,19 +1,25 @@
 package com.artplusplus.contpp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 
+import com.artplusplus.contpp.dto.AccionGrupoDto;
 import com.artplusplus.contpp.model.Accion;
 import com.artplusplus.contpp.model.AccionGrupo;
 import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.repository.AccionGrupoRepository;
+import com.artplusplus.contpp.utils.ObjectMapperUtils;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class AccionGrupoServiceImpl implements AccionGrupoService {
-    @Autowired private AccionGrupoRepository accionGrupoRepository;
+    @Autowired
+    private AccionGrupoRepository accionGrupoRepository;
 
     @Override
     public AccionGrupo save(AccionGrupo accionGrupo) {
@@ -41,8 +47,22 @@ public class AccionGrupoServiceImpl implements AccionGrupoService {
     }
 
     @Override
-    public List<AccionGrupo> filteredList(Specification<AccionGrupo> specs){
-        return (List<AccionGrupo>) accionGrupoRepository.findAll(specs);
+    public List<AccionGrupoDto> filteredList(Specification<AccionGrupo> specs, PageRequest pageRequest){
+        Page<AccionGrupo> accionGrupoPage = accionGrupoRepository.findAll(specs,
+            pageRequest);
+        List<AccionGrupo> accionGrupo = accionGrupoPage.getContent();
+        return (List<AccionGrupoDto>)
+            ObjectMapperUtils.mapAll(accionGrupo, AccionGrupoDto.class);
+    }
+
+    @Override
+    public long count(){
+        return accionGrupoRepository.count();
+    }
+
+    @Override
+    public long countFilteredList(Specification<AccionGrupo> specs){
+        return accionGrupoRepository.count(specs);
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.artplusplus.contpp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.artplusplus.contpp.dto.AccionGrupoDto;
 import com.artplusplus.contpp.dto.PostDto;
 import com.artplusplus.contpp.model.Accion;
 import com.artplusplus.contpp.model.SeccionMenu;
@@ -21,6 +24,7 @@ import com.artplusplus.contpp.model.AccionGrupo;
 import com.artplusplus.contpp.repository.specifications.AccionGrupoSpecifications;
 import com.artplusplus.contpp.service.AccionGrupoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -70,11 +74,29 @@ public class AccionGrupoController {
     }
 
     @PostMapping(path="/filteredList") // Map ONLY POST Requests
-    public @ResponseBody List<AccionGrupo> filteredList(@RequestBody AccionGrupo accionGrupo) {
+    public @ResponseBody List<AccionGrupoDto> filteredList(@RequestBody AccionGrupoDto accionGrupoDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        Specification<AccionGrupo> specs = new AccionGrupoSpecifications(accionGrupo);
-        return accionGrupoService.filteredList(specs);
+        Specification<AccionGrupo> specs = new AccionGrupoSpecifications(accionGrupoDto);
+        int offset = accionGrupoDto.getOffset();
+        int limit = accionGrupoDto.getLimit();
+        int page = offset / limit;
+        List<Sort.Order> order = new ArrayList<Sort.Order>();
+        order.add(new Sort.Order(Sort.Direction.ASC, "grupo.id"));
+        order.add(new Sort.Order(Sort.Direction.ASC, "accion.seccionMenu.id"));
+        return accionGrupoService.filteredList(specs, 
+            PageRequest.of(page, limit, 
+            Sort.by(order)));
+    }
+
+    @GetMapping(path="/count")
+    public ResponseEntity<Long> count() {
+        return ResponseEntity.ok(accionGrupoService.count());
+    }
+
+    @PostMapping(path="/countFilteredList")
+    public ResponseEntity<Long> countFilteredList(@RequestBody AccionGrupoDto accionGrupoDto) {
+        Specification<AccionGrupo> specs = new AccionGrupoSpecifications(accionGrupoDto);
+        return ResponseEntity.ok(accionGrupoService.countFilteredList(specs));
     }
 
     @PostMapping(path="/allowed_menus") // Map ONLY POST Requests

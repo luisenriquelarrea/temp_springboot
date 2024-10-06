@@ -1,28 +1,18 @@
-package com.artplusplus.contpp.model;
+package com.artplusplus.contpp.dto;
 
-import jakarta.persistence.Entity;
+import com.artplusplus.contpp.model.SeccionMenu;
+
 import jakarta.persistence.Table;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.Data;
+
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Table(name = "accion")
-@Data
-@RequiredArgsConstructor
 @Getter
 @Setter
-public class Accion {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+public class AccionDto {
     private Long id;
 
-    @ManyToOne
     private SeccionMenu seccionMenu;
 
     private String descripcion;
@@ -48,4 +38,8 @@ public class Accion {
     public Integer userCreatedId;
 
     public Integer userUpdatedId;
+
+    private int offset;
+
+    private int limit;
 }

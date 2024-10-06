@@ -2,6 +2,8 @@ package com.artplusplus.contpp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,16 +15,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.artplusplus.contpp.dto.AccionDto;
 import com.artplusplus.contpp.model.Accion;
+import com.artplusplus.contpp.repository.specifications.AccionSpecifications;
 import com.artplusplus.contpp.service.AccionService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController // This means that this class is a Controller
 @RequestMapping(path="/api/accion") // This means URL's start with / (after Application path)
 public class AccionController {
-    @Autowired 
+    @Autowired
     private AccionService accionService;
 
     @PostMapping(path="/add") // Map ONLY POST Requests
@@ -42,7 +46,7 @@ public class AccionController {
 
     @GetMapping(path="/")
     public @ResponseBody List<Accion> all() {
-        // This returns a JSON or XML with the users
+        // This returns a JSON or XML
         return accionService.list();
     }
 
@@ -54,5 +58,35 @@ public class AccionController {
             return ResponseEntity.ok("Deleted");
         }
         return ResponseEntity.ok("ID not found");
+    }
+
+    @GetMapping(path="/{id}")
+    public ResponseEntity<Accion> getById(@PathVariable Long id){
+        if(accionService.existsById(id)){
+            Accion accion = accionService.getById(id);
+            return ResponseEntity.ok(accion);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping(path="/filteredList") // Map ONLY POST Requests
+    public @ResponseBody List<AccionDto> filteredList(@RequestBody AccionDto accionDto) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        Specification<Accion> specs = new AccionSpecifications(accionDto);
+        int offset = accionDto.getOffset();
+        int limit = accionDto.getLimit();
+        int page = offset / limit;
+        return accionService.filteredList(specs, PageRequest.of(page, limit));
+    }
+
+    @GetMapping(path="/count")
+    public ResponseEntity<Long> count() {
+        return ResponseEntity.ok(accionService.count());
+    }
+
+    @PostMapping(path="/countFilteredList")
+    public ResponseEntity<Long> countFilteredList(@RequestBody AccionDto accionDto) {
+        Specification<Accion> specs = new AccionSpecifications(accionDto);
+        return ResponseEntity.ok(accionService.countFilteredList(specs));
     }
 }

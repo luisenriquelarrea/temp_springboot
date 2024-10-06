@@ -2,12 +2,16 @@ package com.artplusplus.contpp.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
+
+import com.artplusplus.contpp.dto.SeccionMenuInputDto;
 import com.artplusplus.contpp.model.SeccionMenuInput;
 
 public interface SeccionMenuInputService {
     //Create operation
     SeccionMenuInput save(SeccionMenuInput seccionMenuInput);
-    
+
     //Read operation
     List<SeccionMenuInput> list();
 
@@ -17,15 +21,15 @@ public interface SeccionMenuInputService {
     //Exists by id operation
     boolean existsById(Long id);
 
-    List<SeccionMenuInput> getBySeccionMenu(Long seccionMenuId);
+    //Get entity by id
+    SeccionMenuInput getById(Long id);
 
-    List<SeccionMenuInput> getInputsAlta(Long seccionMenuId);
+    //Read operation filtered by specifications
+    List<SeccionMenuInputDto> filteredList(Specification<SeccionMenuInput> specs, PageRequest pageRequest);
 
-    List<SeccionMenuInput> getInputsModifica(Long seccionMenuId);
+    //Count entity records
+    long count();
 
-    List<SeccionMenuInput> getInputsLista(Long seccionMenuId);
-
-    List<SeccionMenuInput> getInputsFiltro(Long seccionMenuId);
-
-    List<SeccionMenuInput> getInputsEncabezado(Long seccionMenuId);
+    //Count entity records with filter
+    long countFilteredList(Specification<SeccionMenuInput> specs);
 }

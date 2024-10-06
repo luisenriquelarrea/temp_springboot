@@ -1,23 +1,10 @@
 package com.artplusplus.contpp.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.artplusplus.contpp.model.SeccionMenuInput;
 
-import com.artplusplus.contpp.repository.customMethods.SeccionMenuInputCustomMethods;
+public interface SeccionMenuInputRepository extends JpaRepository<SeccionMenuInput, Long>, JpaSpecificationExecutor<SeccionMenuInput> {
 
-import java.util.List;
-
-public interface SeccionMenuInputRepository extends CrudRepository<SeccionMenuInput, Long>,  SeccionMenuInputCustomMethods{
-    List<SeccionMenuInput> findBySeccionMenuId(Long seccionMenuId);
-
-    List<SeccionMenuInput> findBySeccionMenuIdAndAltaAndStatus(Long seccionMenuId, int alta, int status);
-
-    List<SeccionMenuInput> findBySeccionMenuIdAndModificaAndStatus(Long seccionMenuId, int modifica, int status);
-
-    List<SeccionMenuInput> findBySeccionMenuIdAndListaAndStatus(Long seccionMenuId, int lista, int status);
-
-    List<SeccionMenuInput> findBySeccionMenuIdAndFiltroAndStatus(Long seccionMenuId, int filtro, int status);
-
-    List<SeccionMenuInput> findBySeccionMenuIdAndEncabezadoAndStatusOrderByOrden(Long seccionMenuId, int encabezado, int status);
 }

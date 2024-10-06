@@ -29,5 +29,15 @@ public class SeccionMenu {
 
     private String navbarLabel;
 
+    private String icon;
+
     private int status;
+
+    public String createdAt;
+
+    public String updatedAt;
+
+    public Integer userCreatedId;
+
+    public Integer userUpdatedId;
 }

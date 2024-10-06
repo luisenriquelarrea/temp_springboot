@@ -39,7 +39,7 @@ public interface AccionGrupoService {
 
     List<Accion> getAllowedBreadcrumbs(Long grupoId, Long seccionMenuId);
 
-    List<Accion> getAllowedTableActions(Long grupoId, Long seccionMenuId);
+    List<Accion> getAllowedNavbar(Long grupoId, Long seccionMenuId);
 
-    List<Accion> getAllowedExportData(Long grupoId, Long seccionMenuId);
+    List<Accion> getAllowedTableActions(Long grupoId, Long seccionMenuId);
 }

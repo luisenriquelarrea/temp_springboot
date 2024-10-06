@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.AccionGrupoDto;
-import com.artplusplus.contpp.dto.PostDto;
 import com.artplusplus.contpp.model.Accion;
 import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.model.AccionGrupo;
@@ -100,33 +99,33 @@ public class AccionGrupoController {
     }
 
     @PostMapping(path="/allowed_menus") // Map ONLY POST Requests
-    public List<SeccionMenu> getAllowedMenus(@RequestBody PostDto postDto) {
+    public List<SeccionMenu> getAllowedMenus(@RequestBody AccionGrupoDto accionGrupoDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return accionGrupoService.getAllowedMenus(postDto.getGrupoId());
+        return accionGrupoService.getAllowedMenus(accionGrupoDto.getGrupo().getId());
     }
 
     @PostMapping(path="/allowed_breadcrumbs") // Map ONLY POST Requests
-    public List<Accion> getAllowedBreadcrumbs(@RequestBody PostDto postDto) {
+    public List<Accion> getAllowedBreadcrumbs(@RequestBody AccionGrupoDto accionGrupoDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return accionGrupoService.getAllowedBreadcrumbs(postDto.getGrupoId(), 
-            postDto.getSeccionMenuId());
+        return accionGrupoService.getAllowedBreadcrumbs(accionGrupoDto.getGrupo().getId(), 
+            accionGrupoDto.getSeccionMenu().getId());
     }
 
-    @PostMapping(path="/allowed_export_data") // Map ONLY POST Requests
-    public List<Accion> getAllowedExportData(@RequestBody PostDto postDto) {
+    @PostMapping(path="/allowed_navbar") // Map ONLY POST Requests
+    public List<Accion> getAllowedExportData(@RequestBody AccionGrupoDto accionGrupoDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return accionGrupoService.getAllowedExportData(postDto.getGrupoId(), 
-            postDto.getSeccionMenuId());
+        return accionGrupoService.getAllowedNavbar(accionGrupoDto.getGrupo().getId(), 
+            accionGrupoDto.getSeccionMenu().getId());
     }
 
     @PostMapping(path="/allowed_table_actions") // Map ONLY POST Requests
-    public List<Accion> getAllowedTableActions(@RequestBody PostDto postDto) {
+    public List<Accion> getAllowedTableActions(@RequestBody AccionGrupoDto accionGrupoDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return accionGrupoService.getAllowedTableActions(postDto.getGrupoId(), 
-            postDto.getSeccionMenuId());
+        return accionGrupoService.getAllowedTableActions(accionGrupoDto.getGrupo().getId(), 
+            accionGrupoDto.getSeccionMenu().getId());
     }
 }

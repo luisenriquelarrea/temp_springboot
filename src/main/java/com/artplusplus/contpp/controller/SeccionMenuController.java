@@ -2,6 +2,8 @@ package com.artplusplus.contpp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,17 +15,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.artplusplus.contpp.dto.SeccionMenuDto;
 import com.artplusplus.contpp.model.SeccionMenu;
+import com.artplusplus.contpp.repository.specifications.SeccionMenuSpecifications;
 import com.artplusplus.contpp.service.SeccionMenuService;
 
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController // This means that this class is a Controller
 @RequestMapping(path="/api/seccion_menu") // This means URL's start with / (after Application path)
 public class SeccionMenuController {
-    @Autowired 
+    @Autowired
     private SeccionMenuService seccionMenuService;
 
     @PostMapping(path="/add") // Map ONLY POST Requests
@@ -43,7 +46,7 @@ public class SeccionMenuController {
 
     @GetMapping(path="/")
     public @ResponseBody List<SeccionMenu> all() {
-        // This returns a JSON or XML with the users
+        // This returns a JSON or XML
         return seccionMenuService.list();
     }
 
@@ -57,18 +60,6 @@ public class SeccionMenuController {
         return ResponseEntity.ok("ID not found");
     }
 
-    @PostMapping(path="/descripcion") // Map ONLY POST Requests
-    public ResponseEntity<SeccionMenu> getByDescripcion(@RequestBody SeccionMenu seccionMenu) {
-        // @ResponseBody means the returned Entity is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        Optional<SeccionMenu> seccionMenuOptional = 
-            seccionMenuService.getByDescripcion(seccionMenu.getDescripcion());
-        if(seccionMenuOptional.isPresent()){
-            return ResponseEntity.ok(seccionMenuOptional.get());
-        }
-        return ResponseEntity.notFound().build();
-    }
-
     @GetMapping(path="/{id}")
     public ResponseEntity<SeccionMenu> getById(@PathVariable Long id){
         if(seccionMenuService.existsById(id)){
@@ -76,5 +67,26 @@ public class SeccionMenuController {
             return ResponseEntity.ok(seccionMenu);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping(path="/filteredList") // Map ONLY POST Requests
+    public @ResponseBody List<SeccionMenuDto> filteredList(@RequestBody SeccionMenuDto seccionMenuDto) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        Specification<SeccionMenu> specs = new SeccionMenuSpecifications(seccionMenuDto);
+        int offset = seccionMenuDto.getOffset();
+        int limit = seccionMenuDto.getLimit();
+        int page = offset / limit;
+        return seccionMenuService.filteredList(specs, PageRequest.of(page, limit));
+    }
+
+    @GetMapping(path="/count")
+    public ResponseEntity<Long> count() {
+        return ResponseEntity.ok(seccionMenuService.count());
+    }
+
+    @PostMapping(path="/countFilteredList")
+    public ResponseEntity<Long> countFilteredList(@RequestBody SeccionMenuDto seccionMenuDto) {
+        Specification<SeccionMenu> specs = new SeccionMenuSpecifications(seccionMenuDto);
+        return ResponseEntity.ok(seccionMenuService.countFilteredList(specs));
     }
 }

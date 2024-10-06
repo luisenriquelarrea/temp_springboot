@@ -76,8 +76,8 @@ public class AccionGrupoServiceImpl implements AccionGrupoService {
     }
 
     @Override
-    public List<Accion> getAllowedExportData(Long grupoId, Long seccionMenuId) {
-        return (List<Accion>) accionGrupoRepository.getAllowedExportData(grupoId, seccionMenuId);
+    public List<Accion> getAllowedNavbar(Long grupoId, Long seccionMenuId) {
+        return (List<Accion>) accionGrupoRepository.getAllowedNavbar(grupoId, seccionMenuId);
     }
 
     @Override

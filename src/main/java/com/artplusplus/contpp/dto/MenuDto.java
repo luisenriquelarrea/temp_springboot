@@ -1,24 +1,14 @@
-package com.artplusplus.contpp.model;
+package com.artplusplus.contpp.dto;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Table(name = "menu")
-@Data
-@RequiredArgsConstructor
 @Getter
 @Setter
-public class Menu {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+public class MenuDto {
     private Long id;
 
     private String descripcion;
@@ -36,4 +26,8 @@ public class Menu {
     public Integer userCreatedId;
 
     public Integer userUpdatedId;
+
+    private int offset;
+
+    private int limit;
 }

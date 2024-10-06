@@ -24,4 +24,12 @@ public class Grupo {
     private String descripcion;
 
     private int status;
+
+    public String createdAt;
+
+    public String updatedAt;
+
+    public Integer userCreatedId;
+
+    public Integer userUpdatedId;
 }

@@ -2,6 +2,7 @@ package com.artplusplus.contpp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.artplusplus.contpp.dto.PostDto;
+import com.artplusplus.contpp.dto.SeccionMenuInputDto;
 import com.artplusplus.contpp.model.SeccionMenuInput;
 import com.artplusplus.contpp.repository.specifications.SeccionMenuInputSpecifications;
 import com.artplusplus.contpp.service.SeccionMenuInputService;
@@ -69,35 +70,23 @@ public class SeccionMenuInputController {
     }
 
     @PostMapping(path="/filteredList") // Map ONLY POST Requests
-    public @ResponseBody List<SeccionMenuInput> filteredList(@RequestBody SeccionMenuInput seccionMenuInput) {
+    public @ResponseBody List<SeccionMenuInputDto> filteredList(@RequestBody SeccionMenuInputDto seccionMenuInputDto) {
         // @ResponseBody means the returned Entity is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        Specification<SeccionMenuInput> specs = new SeccionMenuInputSpecifications(seccionMenuInput);
-        return seccionMenuInputService.filteredList(specs);
+        Specification<SeccionMenuInput> specs = new SeccionMenuInputSpecifications(seccionMenuInputDto);
+        int offset = seccionMenuInputDto.getOffset();
+        int limit = seccionMenuInputDto.getLimit();
+        int page = offset / limit;
+        return seccionMenuInputService.filteredList(specs, PageRequest.of(page, limit));
     }
 
-    @PostMapping(path="/seccion_menu") // Map ONLY POST Requests
-    public List<SeccionMenuInput> getBySeccionMenu(@RequestBody PostDto postDto) {
-        // @ResponseBody means the returned Entity is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        return seccionMenuInputService.getBySeccionMenu(postDto.getSeccionMenuId());
+    @GetMapping(path="/count")
+    public ResponseEntity<Long> count() {
+        return ResponseEntity.ok(seccionMenuInputService.count());
     }
 
-    @PostMapping(path="/inputs") // Map ONLY POST Requests
-    public List<SeccionMenuInput> getInputs(@RequestBody PostDto postDto) {
-        // @ResponseBody means the returned Entity is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        String columna = postDto.getColumna();
-        if(columna.equalsIgnoreCase("alta"))
-            return seccionMenuInputService.getInputsAlta(postDto.getSeccionMenuId());
-        if(columna.equalsIgnoreCase("modifica"))
-            return seccionMenuInputService.getInputsModifica(postDto.getSeccionMenuId());
-        if(columna.equalsIgnoreCase("lista"))
-            return seccionMenuInputService.getInputsLista(postDto.getSeccionMenuId());
-        if(columna.equalsIgnoreCase("filtro"))
-            return seccionMenuInputService.getInputsFiltro(postDto.getSeccionMenuId());
-        if(columna.equalsIgnoreCase("encabezado"))
-            return seccionMenuInputService.getInputsEncabezado(postDto.getSeccionMenuId());
-        return List.of();
+    @PostMapping(path="/countFilteredList")
+    public ResponseEntity<Long> countFilteredList(@RequestBody SeccionMenuInputDto seccionMenuInputDto) {
+        Specification<SeccionMenuInput> specs = new SeccionMenuInputSpecifications(seccionMenuInputDto);
+        return ResponseEntity.ok(seccionMenuInputService.countFilteredList(specs));
     }
 }

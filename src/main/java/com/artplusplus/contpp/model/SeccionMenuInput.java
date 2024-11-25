@@ -37,6 +37,8 @@ public class SeccionMenuInput {
 
     private int inputRequired;
 
+    private String inputAccepts;
+
     private int alta;
 
     private int modifica;

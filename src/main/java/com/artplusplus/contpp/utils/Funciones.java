@@ -1,6 +1,8 @@
 package com.artplusplus.contpp.utils;
 
 import java.io.ByteArrayOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -12,6 +14,17 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 
 public class Funciones {
+    public static String currentTimestamp(){
+        // Get the current date and time
+        LocalDateTime now = LocalDateTime.now();
+
+        // Define the format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        // Format the current date and time
+        return now.format(formatter);
+    }
+
     public static byte[] getPDFJasperReport(JasperPrint jasperPrint) throws JRException{
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
@@ -42,6 +55,19 @@ public class Funciones {
         exporter.exportReport();
         byte[] bytes = baos.toByteArray();
         return bytes;
+    }
+
+    public static String removeHexCharacters(String text) {
+        // strips off all non-ASCII characters
+        text = text.replaceAll("[^\\x00-\\x7F]", "");
+    
+        // erases all the ASCII control characters
+        text = text.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
+        
+        // removes non-printable characters from Unicode
+        text = text.replaceAll("\\p{C}", "");
+        
+        return text;
     }
 
     public static String toTimestamp(String fecha){

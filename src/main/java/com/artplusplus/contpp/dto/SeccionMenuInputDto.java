@@ -47,6 +47,8 @@ public class SeccionMenuInputDto {
 
     private String selectColumnas;
 
+    private String selectFilters;
+
     private String urlGet;
 
     private String modelo;

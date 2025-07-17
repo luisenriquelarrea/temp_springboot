@@ -29,6 +29,8 @@ public class SeccionMenuInputDto {
 
     private String inputAccepts;
 
+    private String keyboardType;
+
     private int alta;
 
     private int modifica;
@@ -41,11 +43,15 @@ public class SeccionMenuInputDto {
 
     private int newLine;
 
+    private int multiple;
+
     private int currencyFormat;
 
     private int orden;
 
     private String selectColumnas;
+
+    private String selectValues;
 
     private String selectFilters;
 

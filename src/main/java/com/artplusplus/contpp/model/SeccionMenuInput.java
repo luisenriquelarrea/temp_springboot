@@ -57,6 +57,8 @@ public class SeccionMenuInput {
 
     private int currencyFormat;
 
+    private int numberFormat;
+
     private int orden;
 
     private String selectColumnas;

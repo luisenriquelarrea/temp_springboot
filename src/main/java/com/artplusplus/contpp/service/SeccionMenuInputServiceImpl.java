@@ -61,4 +61,33 @@ public class SeccionMenuInputServiceImpl implements SeccionMenuInputService {
     public long countFilteredList(Specification<SeccionMenuInput> specs){
         return seccionMenuInputRepository.count(specs);
     }
+
+    @Override
+    @Transactional
+    public SeccionMenuInput saveOrUpdate(SeccionMenuInput input) {
+        Long seccionMenuId = input.getSeccionMenu().getId();
+        int newOrden = input.getOrden();
+
+        if (input.getId() == null) {
+            seccionMenuInputRepository.shiftOrdenUp(seccionMenuId, newOrden);
+            return seccionMenuInputRepository.save(input);
+        } else {
+            SeccionMenuInput existing = seccionMenuInputRepository.findById(input.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Record not found"));
+
+            int oldOrden = existing.getOrden();
+
+            if (oldOrden == newOrden) {
+                return seccionMenuInputRepository.save(input);
+            }
+
+            if (newOrden < oldOrden) {
+                seccionMenuInputRepository.shiftOrdenUp(seccionMenuId, newOrden);
+            } else {
+                seccionMenuInputRepository.shiftOrdenDown(seccionMenuId, oldOrden, newOrden);
+            }
+
+            return seccionMenuInputRepository.save(input);
+        }
+    }
 }

@@ -33,14 +33,14 @@ public class SeccionMenuInputController {
     public ResponseEntity<SeccionMenuInput> add(@RequestBody SeccionMenuInput seccionMenuInput) {
         // @ResponseBody means the returned Entity is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        SeccionMenuInput obj = seccionMenuInputService.save(seccionMenuInput);
+        SeccionMenuInput obj = seccionMenuInputService.saveOrUpdate(seccionMenuInput);
         return ResponseEntity.ok(obj);
     }
 
     @PutMapping(path="/{id}")
     public ResponseEntity<SeccionMenuInput> update(@RequestBody SeccionMenuInput seccionMenuInput,
                      @PathVariable Long id){
-        SeccionMenuInput obj = seccionMenuInputService.save(seccionMenuInput);
+        SeccionMenuInput obj = seccionMenuInputService.saveOrUpdate(seccionMenuInput);
         return ResponseEntity.ok(obj);
     }
 

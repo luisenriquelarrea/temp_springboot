@@ -32,4 +32,6 @@ public interface SeccionMenuInputService {
 
     //Count entity records with filter
     long countFilteredList(Specification<SeccionMenuInput> specs);
+
+    SeccionMenuInput saveOrUpdate(SeccionMenuInput input);
 }

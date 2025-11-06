@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +16,7 @@ import com.artplusplus.contpp.storage.StorageProperties;
 import com.artplusplus.contpp.storage.StorageService;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class})
+@EnableJpaAuditing
 @RestController
 @EnableConfigurationProperties(StorageProperties.class)
 public class ContppApplication {

@@ -1,6 +1,14 @@
 package com.artplusplus.contpp.model;
 
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +21,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "seccion_menu")
+@EntityListeners(AuditingEntityListener.class)
 @Data
 @RequiredArgsConstructor
 @Getter
@@ -33,9 +42,12 @@ public class SeccionMenu {
 
     private int status;
 
-    public String createdAt;
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
-    public String updatedAt;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
     public Integer userCreatedId;
 

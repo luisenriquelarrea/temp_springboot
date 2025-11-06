@@ -11,6 +11,8 @@ import com.artplusplus.contpp.model.SeccionMenuInput;
 import com.artplusplus.contpp.repository.SeccionMenuInputRepository;
 import com.artplusplus.contpp.utils.ObjectMapperUtils;
 
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 
 @Service

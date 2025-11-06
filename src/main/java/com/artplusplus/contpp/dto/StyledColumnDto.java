@@ -1,5 +1,7 @@
 package com.artplusplus.contpp.dto;
 
+import com.artplusplus.contpp.model.SeccionMenu;
+
 import jakarta.persistence.Table;
 
 import lombok.Getter;

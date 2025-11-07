@@ -42,7 +42,9 @@ public interface AccionGrupoRepository extends JpaRepository<AccionGrupo, Long>,
         "AND ag.accion.status = 1 "+
         "AND ag.accion.onBreadcrumb = 1 "+
         "AND ag.accion.seccionMenu.status = 1 "+
-        "AND ag.accion.seccionMenu.menu.status = 1 ")
+        "AND ag.accion.seccionMenu.menu.status = 1 "+
+        "ORDER BY ag.accion.seccionMenu.menu.descripcion ASC, "+ 
+        "ag.accion.seccionMenu.descripcion ASC ")
     List<SeccionMenu> getAllowedMenus(@Param("grupoId") Long grupoId);
 
     @Query("SELECT ag.accion "+

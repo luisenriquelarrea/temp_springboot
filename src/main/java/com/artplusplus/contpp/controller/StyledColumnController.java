@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.StyledColumnDto;
 import com.artplusplus.contpp.model.StyledColumn;
-import com.artplusplus.contpp.repository.specifications.StyledColumnSpecifications;
+import com.artplusplus.contpp.specifications.StyledColumnSpecifications;
 import com.artplusplus.contpp.service.StyledColumnService;
 
 import java.util.List;

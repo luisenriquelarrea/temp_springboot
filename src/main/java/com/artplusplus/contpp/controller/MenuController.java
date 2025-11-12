@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.MenuDto;
 import com.artplusplus.contpp.model.Menu;
-import com.artplusplus.contpp.repository.specifications.MenuSpecifications;
+import com.artplusplus.contpp.specifications.MenuSpecifications;
 import com.artplusplus.contpp.service.MenuService;
 
 import java.util.List;

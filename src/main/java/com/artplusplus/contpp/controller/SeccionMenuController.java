@@ -3,6 +3,7 @@ package com.artplusplus.contpp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,9 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.SeccionMenuDto;
 import com.artplusplus.contpp.model.SeccionMenu;
-import com.artplusplus.contpp.repository.specifications.SeccionMenuSpecifications;
+import com.artplusplus.contpp.specifications.SeccionMenuSpecifications;
 import com.artplusplus.contpp.service.SeccionMenuService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -76,7 +78,10 @@ public class SeccionMenuController {
         int offset = seccionMenuDto.getOffset();
         int limit = seccionMenuDto.getLimit();
         int page = offset / limit;
-        return seccionMenuService.filteredList(specs, PageRequest.of(page, limit));
+        List<Sort.Order> order = new ArrayList<Sort.Order>();
+        order.add(new Sort.Order(Sort.Direction.ASC, "menu.descripcion"));
+        order.add(new Sort.Order(Sort.Direction.ASC, "descripcion"));
+        return seccionMenuService.filteredList(specs, PageRequest.of(page, limit, Sort.by(order)));
     }
 
     @GetMapping(path="/count")

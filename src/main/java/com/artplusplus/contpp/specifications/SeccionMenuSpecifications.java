@@ -1,4 +1,4 @@
-package com.artplusplus.contpp.repository.specifications;
+package com.artplusplus.contpp.specifications;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,7 +23,18 @@ public class SeccionMenuSpecifications implements Specification<SeccionMenu>{
     @Override
     public Predicate toPredicate(Root<SeccionMenu> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<Predicate>();
-
+        if(seccionMenuDto.getMenu() != null && seccionMenuDto.getMenu().getId() != null){
+            predicates.add(criteriaBuilder.equal(
+                root.join("menu").get("id"), 
+                seccionMenuDto.getMenu().getId()
+            ));
+        }
+        if(seccionMenuDto.getDescripcion() != null){
+            predicates.add(criteriaBuilder.like(
+                root.get("descripcion"), 
+                "%"+seccionMenuDto.getDescripcion()+"%"
+            ));
+        }
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
     }
 }

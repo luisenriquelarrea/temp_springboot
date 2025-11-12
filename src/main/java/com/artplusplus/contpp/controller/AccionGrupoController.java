@@ -20,7 +20,7 @@ import com.artplusplus.contpp.dto.AccionGrupoDto;
 import com.artplusplus.contpp.model.Accion;
 import com.artplusplus.contpp.model.SeccionMenu;
 import com.artplusplus.contpp.model.AccionGrupo;
-import com.artplusplus.contpp.repository.specifications.AccionGrupoSpecifications;
+import com.artplusplus.contpp.specifications.AccionGrupoSpecifications;
 import com.artplusplus.contpp.service.AccionGrupoService;
 
 import java.util.ArrayList;

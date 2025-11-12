@@ -1,4 +1,4 @@
-package com.artplusplus.contpp.repository.specifications;
+package com.artplusplus.contpp.specifications;
 
 import java.util.List;
 import java.util.ArrayList;

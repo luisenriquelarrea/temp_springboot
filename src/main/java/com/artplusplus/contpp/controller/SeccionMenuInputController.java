@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.SeccionMenuInputDto;
 import com.artplusplus.contpp.model.SeccionMenuInput;
-import com.artplusplus.contpp.repository.specifications.SeccionMenuInputSpecifications;
+import com.artplusplus.contpp.specifications.SeccionMenuInputSpecifications;
 import com.artplusplus.contpp.service.SeccionMenuInputService;
 
 import java.util.List;

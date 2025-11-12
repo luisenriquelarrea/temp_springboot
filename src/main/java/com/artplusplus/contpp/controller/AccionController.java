@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.AccionDto;
 import com.artplusplus.contpp.model.Accion;
-import com.artplusplus.contpp.repository.specifications.AccionSpecifications;
+import com.artplusplus.contpp.specifications.AccionSpecifications;
 import com.artplusplus.contpp.service.AccionService;
 
 import java.util.List;

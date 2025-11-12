@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artplusplus.contpp.dto.GrupoDto;
 import com.artplusplus.contpp.model.Grupo;
-import com.artplusplus.contpp.repository.specifications.GrupoSpecifications;
+import com.artplusplus.contpp.specifications.GrupoSpecifications;
 import com.artplusplus.contpp.service.GrupoService;
 
 import java.util.List;

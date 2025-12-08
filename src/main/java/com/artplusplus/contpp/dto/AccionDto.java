@@ -1,5 +1,7 @@
 package com.artplusplus.contpp.dto;
 
+import java.time.LocalDateTime;
+
 import com.artplusplus.contpp.model.SeccionMenu;
 
 import jakarta.persistence.Table;
@@ -31,9 +33,9 @@ public class AccionDto {
 
     private int status;
 
-    public String createdAt;
+    public LocalDateTime createdAt;
 
-    public String updatedAt;
+    public LocalDateTime updatedAt;
 
     public Integer userCreatedId;
 

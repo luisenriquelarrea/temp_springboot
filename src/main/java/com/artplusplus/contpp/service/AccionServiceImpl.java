@@ -7,20 +7,37 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.artplusplus.contpp.dto.AccionDto;
+import com.artplusplus.contpp.mapper.AccionMapper;
 import com.artplusplus.contpp.model.Accion;
 import com.artplusplus.contpp.repository.AccionRepository;
 import com.artplusplus.contpp.utils.ObjectMapperUtils;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import java.util.List;
 
 @Service
-public class AccionServiceImpl implements AccionService {
+public class AccionServiceImpl extends BaseServiceImpl implements AccionService {
     @Autowired
     private AccionRepository accionRepository;
+
+    @Autowired
+    private AccionMapper accionMapper;
 
     @Override
     public Accion save(Accion accion) {
         return accionRepository.save(accion);
+    }
+
+    @Override
+    public AccionDto patch(Long id, JsonNode patchNode) {
+        Accion entity = accionRepository.findById(id)
+            .orElseThrow();
+        AccionDto originalDto = accionMapper.toDto(entity);
+        AccionDto patchedDto = applyMergePatchNode(originalDto, patchNode, AccionDto.class);
+        accionMapper.updateEntityFromDto(patchedDto, entity);
+        accionRepository.save(entity);
+        return accionMapper.toDto(entity);
     }
 
     @Override

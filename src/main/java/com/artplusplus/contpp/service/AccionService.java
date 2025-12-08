@@ -8,9 +8,14 @@ import org.springframework.data.jpa.domain.Specification;
 import com.artplusplus.contpp.dto.AccionDto;
 import com.artplusplus.contpp.model.Accion;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public interface AccionService {
     //Create operation
     Accion save(Accion accion);
+
+    //Patch operation
+    AccionDto patch(Long id, JsonNode patchNode);
 
     //Read operation
     List<Accion> list();

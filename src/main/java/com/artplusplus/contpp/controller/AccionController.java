@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,8 @@ import com.artplusplus.contpp.dto.AccionDto;
 import com.artplusplus.contpp.model.Accion;
 import com.artplusplus.contpp.specifications.AccionSpecifications;
 import com.artplusplus.contpp.service.AccionService;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.List;
 
@@ -35,6 +38,13 @@ public class AccionController {
         // @RequestParam means it is a parameter from the GET or POST request
         Accion obj = accionService.save(accion);
         return ResponseEntity.ok(obj);
+    }
+
+    @PatchMapping(value = "/{id}", consumes = "application/merge-patch+json")
+    public ResponseEntity<AccionDto> patch(@PathVariable Long id, 
+            @RequestBody JsonNode patchNode) {
+        AccionDto accionDto = accionService.patch(id, patchNode);
+        return ResponseEntity.ok(accionDto);
     }
 
     @PutMapping(path="/{id}")

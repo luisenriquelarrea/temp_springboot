@@ -1,19 +1,14 @@
 package com.artplusplus.contpp.dto;
 
-import com.artplusplus.contpp.model.SeccionMenu;
-
-import jakarta.persistence.Table;
-
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name = "seccion_menu_input")
 @Getter
 @Setter
 public class SeccionMenuInputDto {
     private Long id;
 
-    private SeccionMenu seccionMenu;
+    private SeccionMenuDto seccionMenu;
 
     private String inputType;
 
@@ -36,6 +31,8 @@ public class SeccionMenuInputDto {
     private int modifica;
 
     private int lista;
+
+    private int vista;
 
     private int filtro;
 

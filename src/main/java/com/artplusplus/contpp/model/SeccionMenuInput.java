@@ -56,6 +56,8 @@ public class SeccionMenuInput {
 
     private int lista;
 
+    private int vista;
+
     private int filtro;
 
     private int encabezado;

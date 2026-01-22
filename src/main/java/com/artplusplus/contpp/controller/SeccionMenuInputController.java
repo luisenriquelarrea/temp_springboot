@@ -89,4 +89,31 @@ public class SeccionMenuInputController {
         Specification<SeccionMenuInput> specs = new SeccionMenuInputSpecifications(seccionMenuInputDto);
         return ResponseEntity.ok(seccionMenuInputService.countFilteredList(specs));
     }
+
+    @PostMapping(path="/seccion_menu") // Map ONLY POST Requests
+    public List<SeccionMenuInput> getBySeccionMenu(@RequestBody SeccionMenuInputDto seccionMenuInputDto) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return seccionMenuInputService.getBySeccionMenu(seccionMenuInputDto.getSeccionMenu().getId());
+    }
+
+    /*@PostMapping(path="/inputs") // Map ONLY POST Requests
+    public List<SeccionMenuInput> getInputs(@RequestBody SeccionMenuInputDto seccionMenuInputDto) {
+        // @ResponseBody means the returned Entity is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        String columna = postDto.getColumna();
+        if(columna.equalsIgnoreCase("alta"))
+            return seccionMenuInputService.getInputsAlta(postDto.getSeccionMenuId());
+        if(columna.equalsIgnoreCase("modifica"))
+            return seccionMenuInputService.getInputsModifica(postDto.getSeccionMenuId());
+        if(columna.equalsIgnoreCase("lista"))
+            return seccionMenuInputService.getInputsLista(postDto.getSeccionMenuId());
+        if(columna.equalsIgnoreCase("vista"))
+            return seccionMenuInputService.getInputsVista(postDto.getSeccionMenuId());
+        if(columna.equalsIgnoreCase("filtro"))
+            return seccionMenuInputService.getInputsFiltro(postDto.getSeccionMenuId());
+        if(columna.equalsIgnoreCase("encabezado"))
+            return seccionMenuInputService.getInputsEncabezado(postDto.getSeccionMenuId());
+        return List.of();
+    }*/
 }

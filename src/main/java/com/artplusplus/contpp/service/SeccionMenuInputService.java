@@ -33,5 +33,19 @@ public interface SeccionMenuInputService {
     //Count entity records with filter
     long countFilteredList(Specification<SeccionMenuInput> specs);
 
+    List<SeccionMenuInput> getBySeccionMenu(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsAlta(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsModifica(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsLista(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsVista(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsFiltro(Long seccionMenuId);
+
+    List<SeccionMenuInput> getInputsEncabezado(Long seccionMenuId);
+
     SeccionMenuInput saveOrUpdate(SeccionMenuInput input);
 }
